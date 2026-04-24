@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('majors', function (Blueprint $table) {
             $table->id();
-            $table->string('name_major', 100);
-            $table->string('logo_major')->nullable();
-            $table->string('about_major')->nullable();
+            $table->string('major_name', 100);
+            $table->string('major_logo')->nullable();
+            $table->string('major_about')->nullable();
             $table->enum('class', ['X', 'XI', 'XII']);
             $table->foreignId('student_id')->constrained()->onDelete('cascade');
             $table->foreignId('teacher_id')->constrained()->onDelete('cascade');
