@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\RateLimiter;
 
 class AuthController extends Controller
 {
@@ -51,14 +52,26 @@ class AuthController extends Controller
             'password' => 'required|string|min:8',
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->route('dashboard')->with('success', 'Login berhasil');
+        $key = 'login-attempts-' . $request->ip() . '-' . $request->email;
+
+        if (RateLimiter::tooManyAttempts($key, 5)) {
+            return back()->withErrors([
+                'email' => 'Terlalu banyak percobaan login. Silahkan coba lagi nanti',
+            ]);
         }
 
-        return back()->withErrors([
-            'email' => 'Email atau password salah.',
-        ])->onlyInput('email');
+        if (!Auth::attempt($credentials)) {
+            RateLimiter::hit($key, 60);
+            return back()->withErrors([
+                'email' => 'Email atau password salah.',
+            ])->onlyInput('email');
+        }
+
+        RateLimiter::clear($key);
+
+        $request->session()->regenerate();
+        return redirect()->route('admin.dashboard')->with('success', 'Login berhasil');
+
     }
 
     public function logout(Request $request)
