@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Admin Dashboard') - Manajemen Sekolah</title>
+    <title>@yield('title', 'Admin Dashboard') - Sekolah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -228,34 +228,34 @@
                     <span class="ml-3">Dashboard</span>
                 </a>
 
-                <!-- Manajemen Siswa -->
+                <!-- Siswa -->
                 <a href="{{ route('admin.students.index') }}" class="sidebar-menu-item block px-4 py-3 rounded-lg mb-2 @if(request()->routeIs('admin.students.*')) active @endif">
                     <i class="fas fa-users w-5"></i>
-                    <span class="ml-3">Manajemen Siswa</span>
+                    <span class="ml-3">Siswa</span>
                 </a>
 
-                <!-- Manajemen Guru -->
+                <!-- Guru -->
                 <a href="{{ route('admin.teachers.index') }}" class="sidebar-menu-item block px-4 py-3 rounded-lg mb-2 @if(request()->routeIs('admin.teachers.*')) active @endif">
                     <i class="fas fa-chalkboard-user w-5"></i>
-                    <span class="ml-3">Manajemen Guru</span>
+                    <span class="ml-3">Guru</span>
                 </a>
 
-                <!-- Manajemen Jurusan -->
+                <!-- Jurusan -->
                 <a href="{{ route('admin.majors.index') }}" class="sidebar-menu-item block px-4 py-3 rounded-lg mb-2 @if(request()->routeIs('admin.majors.*')) active @endif">
                     <i class="fas fa-book w-5"></i>
-                    <span class="ml-3">Manajemen Jurusan</span>
+                    <span class="ml-3">Jurusan</span>
                 </a>
 
-                <!-- Manajemen Jabatan -->
+                <!-- Jabatan -->
                 <a href="{{ route('admin.positions.index') }}" class="sidebar-menu-item block px-4 py-3 rounded-lg mb-2 @if(request()->routeIs('admin.positions.*')) active @endif">
                     <i class="fas fa-briefcase w-5"></i>
-                    <span class="ml-3">Manajemen Jabatan</span>
+                    <span class="ml-3">Jabatan</span>
                 </a>
 
-                <!-- Manajemen Artikel -->
+                <!-- Artikel -->
                 <a href="{{ route('admin.articles.index') }}" class="sidebar-menu-item block px-4 py-3 rounded-lg mb-2 @if(request()->routeIs('admin.articles.*')) active @endif">
                     <i class="fas fa-newspaper w-5"></i>
-                    <span class="ml-3">Manajemen Artikel</span>
+                    <span class="ml-3">Artikel</span>
                 </a>
 
                 <!-- Tentang Sekolah -->

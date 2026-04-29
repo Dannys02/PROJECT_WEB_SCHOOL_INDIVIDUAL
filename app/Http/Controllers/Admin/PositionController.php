@@ -7,14 +7,14 @@ use App\Models\Position;
 use Illuminate\Http\Request;
 
 class PositionController extends Controller
-{
+{ 
     public function index(Request $request)
     {
         $query = Position::query();
 
         if ($request->filled('search')) {
             $search = $request->input('search');
-            $query->where('nama_jabatan', 'like', "%{$search}%");
+            $query->where('position', 'like', "%{$search}%");
         }
 
         $positions = $query->paginate(15);
@@ -29,8 +29,7 @@ class PositionController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nama_jabatan' => 'required|string|max:255|unique:positions',
-            'tentang_jabatan' => 'required|string',
+            'position' => 'required|string|max:255|unique:positions',
         ]);
 
         Position::create($validated);

@@ -17,33 +17,17 @@
 
                 <!-- Nama Jabatan -->
                 <div>
-                    <label for="nama_jabatan" class="block text-sm font-semibold text-purple-200 mb-2">Nama Jabatan</label>
+                    <label for="position" class="block text-sm font-semibold text-purple-200 mb-2">Nama Jabatan</label>
                     <input
                         type="text"
-                        id="nama_jabatan"
-                        name="nama_jabatan"
-                        value="{{ old('nama_jabatan') }}"
+                        id="position"
+                        name="position"
+                        value="{{ old('position') }}"
                         placeholder="Contoh: Kepala Sekolah"
                         class="form-input-cosmic w-full px-4 py-3 rounded-lg"
                         required
                     >
-                    @error('nama_jabatan')
-                        <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <!-- Tentang Jabatan -->
-                <div>
-                    <label for="tentang_jabatan" class="block text-sm font-semibold text-purple-200 mb-2">Deskripsi Jabatan</label>
-                    <textarea
-                        id="tentang_jabatan"
-                        name="tentang_jabatan"
-                        rows="6"
-                        placeholder="Deskripsi lengkap jabatan dan tanggung jawabnya"
-                        class="form-input-cosmic w-full px-4 py-3 rounded-lg"
-                        required
-                    >{{ old('tentang_jabatan') }}</textarea>
-                    @error('tentang_jabatan')
+                    @error('position')
                         <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>

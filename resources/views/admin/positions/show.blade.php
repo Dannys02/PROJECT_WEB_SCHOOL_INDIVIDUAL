@@ -11,14 +11,14 @@
 
         <div class="card-cosmic rounded-lg overflow-hidden">
             <!-- Header -->
-            <div class="bg-gradient-to-r from-orange-600 to-orange-800 px-8 py-6 relative">
+            <div class="px-8 py-6 relative">
                 <div class="flex items-start justify-between">
                     <div class="flex items-center gap-4">
                         <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-gray-800 font-bold text-2xl">
                             <i class="fas fa-briefcase"></i>
                         </div>
                         <div>
-                            <h2 class="text-3xl font-bold text-white mb-1">{{ $position->nama_jabatan ?? 'N/A' }}</h2>
+                            <h2 class="text-3xl font-bold text-white mb-1">{{ $position->position ?? 'N/A' }}</h2>
                             <p class="text-orange-100">Posisi</p>
                         </div>
                     </div>
@@ -42,13 +42,7 @@
                 <!-- Nama Jabatan -->
                 <div>
                     <p class="text-gray-400 text-sm mb-2">Nama Jabatan</p>
-                    <p class="text-white font-semibold text-lg">{{ $position->nama_jabatan ?? 'N/A' }}</p>
-                </div>
-
-                <!-- Deskripsi Jabatan -->
-                <div class="border-t border-purple-500 border-opacity-30 pt-6">
-                    <p class="text-gray-400 text-sm mb-3">Deskripsi Jabatan</p>
-                    <p class="text-white text-base leading-relaxed whitespace-pre-wrap">{{ $position->tentang_jabatan ?? 'N/A' }}</p>
+                    <p class="text-white font-semibold text-lg">{{ $position->position ?? 'N/A' }}</p>
                 </div>
 
                 <!-- Info Tambahan -->

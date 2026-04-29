@@ -40,7 +40,6 @@
                     <tr>
                         <th class="px-6 py-3 text-left">No</th>
                         <th class="px-6 py-3 text-left">Nama Jabatan</th>
-                        <th class="px-6 py-3 text-left">Deskripsi</th>
                         <th class="px-6 py-3 text-center">Aksi</th>
                     </tr>
                 </thead>
@@ -48,8 +47,7 @@
                     @forelse($positions as $key => $position)
                         <tr>
                             <td class="px-6 py-3">{{ $key + 1 }}</td>
-                            <td class="px-6 py-3 font-semibold text-white">{{ $position->nama_jabatan ?? 'N/A' }}</td>
-                            <td class="px-6 py-3 text-sm">{{ substr($position->tentang_jabatan ?? 'N/A', 0, 50) }}...</td>
+                            <td class="px-6 py-3 font-semibold text-white">{{ $position->position ?? 'N/A' }}</td>
                             <td class="px-6 py-3 text-center">
                                 <div class="flex items-center justify-center gap-2">
                                     <a href="{{ route('admin.positions.show', $position->id) }}" class="px-3 py-1 bg-blue-500 bg-opacity-20 text-blue-300 rounded hover:bg-opacity-40 transition text-sm">
