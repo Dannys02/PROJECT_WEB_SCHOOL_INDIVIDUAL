@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('nip')->unique();
-            $table->enum('gender', ['male', 'female']);
+            $table->enum('gender', ['Laki-laki', 'Perempuan']);
             $table->string('address');
             $table->string('teacher_picture')->nullable();
             $table->foreignId('position_id')->constrained()->onDelete('cascade');

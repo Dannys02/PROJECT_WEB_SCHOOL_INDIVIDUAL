@@ -199,7 +199,7 @@
                 <div class="flex items-center justify-between">
                     <div class="nav-brand flex items-center gap-2">
                         <i class="fas fa-graduation-cap text-2xl"></i>
-                        <span>SekolahPro</span>
+                        <span class="uppercase text-sm">smpn 4 genteng</span>
                     </div>
                     <button class="md:hidden text-gray-300 hover:text-purple-400" onclick="toggleSidebar()">
                         <i class="fas fa-times text-xl"></i>
