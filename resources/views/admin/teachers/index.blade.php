@@ -39,6 +39,7 @@
                 <thead class="font-semibold text-white">
                     <tr>
                         <th class="px-6 py-3 text-left">No</th>
+                        <th class="px-6 py-3 text-left">Foto</th>
                         <th class="px-6 py-3 text-left">Nama Guru</th>
                         <th class="px-6 py-3 text-left">NIP</th>
                         <th class="px-6 py-3 text-left">Jenis Kelamin</th>
@@ -49,15 +50,22 @@
                 <tbody class="text-gray-300">
                     @forelse($teachers as $key => $teacher)
                         <tr>
-                            <td class="px-6 py-3">{{ $key + 1 }}</td>
-                            <td class="px-6 py-3 font-semibold text-white">{{ $teacher->nama_guru ?? 'N/A' }}</td>
+                                    <td class="px-6 py-3">{{ $key + 1 }}</td>
+                            <td class="px-6 py-3">
+                                @if($teacher->teacher_picture)
+                                    <img src="{{ asset('storage/' . $teacher->teacher_picture) }}" alt="Foto Guru" class="w-16 h-16 object-cover rounded-full">
+                                @else
+                                    <div class="bg-gray-300 border-2 border-dashed rounded-xl w-16 h-16" />
+                                @endif
+                            </td>
+                            <td class="px-6 py-3 font-semibold text-white">{{ $teacher->name ?? 'N/A' }}</td>
                             <td class="px-6 py-3">{{ $teacher->nip ?? 'N/A' }}</td>
                             <td class="px-6 py-3">
                                 <span class="inline-block px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-300 rounded text-xs">
-                                    {{ $teacher->jenis_kelamin_guru ?? 'N/A' }}
+                                    {{ $teacher->gender ?? 'N/A' }}
                                 </span>
                             </td>
-                            <td class="px-6 py-3 text-sm">{{ $teacher->jabatan->nama_jabatan ?? 'Belum ditentukan' }}</td>
+                            <td class="px-6 py-3 text-sm">{{ $teacher->positions->position ?? 'N/A' }}</td>
                             <td class="px-6 py-3 text-center">
                                 <div class="flex items-center justify-center gap-2">
                                     <a href="{{ route('admin.teachers.show', $teacher->id) }}" class="px-3 py-1 bg-blue-500 bg-opacity-20 text-blue-300 rounded hover:bg-opacity-40 transition text-sm">

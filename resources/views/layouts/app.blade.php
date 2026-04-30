@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -107,8 +108,15 @@
         }
 
         @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 1;
+            }
         }
 
         .nav-brand {
@@ -185,6 +193,7 @@
         }
     </style>
 </head>
+
 <body class="cosmic-bg">
     <!-- Decorative Stars -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none">
@@ -215,7 +224,8 @@
             <!-- User Info -->
             <div class="p-4 border-b border-purple-500 border-opacity-20">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center">
+                    <div
+                        class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center">
                         <i class="fas fa-user text-white"></i>
                     </div>
                     <div>
@@ -228,43 +238,50 @@
             <!-- Menu Items -->
             <nav class="mt-6 px-4">
                 <!-- Dashboard -->
-                <a href="{{ route('admin.dashboard') }}" class="sidebar-menu-item block px-4 py-3 rounded-lg mb-2 @if(request()->routeIs('admin.dashboard')) active @endif">
+                <a href="{{ route('admin.dashboard') }}"
+                    class="sidebar-menu-item block px-4 py-3 rounded-lg mb-2 @if (request()->routeIs('admin.dashboard')) active @endif">
                     <i class="fas fa-chart-line w-5"></i>
                     <span class="ml-3">Dashboard</span>
                 </a>
 
                 <!-- Siswa -->
-                <a href="{{ route('admin.students.index') }}" class="sidebar-menu-item block px-4 py-3 rounded-lg mb-2 @if(request()->routeIs('admin.students.*')) active @endif">
+                <a href="{{ route('admin.students.index') }}"
+                    class="sidebar-menu-item block px-4 py-3 rounded-lg mb-2 @if (request()->routeIs('admin.students.*')) active @endif">
                     <i class="fas fa-users w-5"></i>
                     <span class="ml-3">Siswa</span>
                 </a>
 
                 <!-- Guru -->
-                <a href="{{ route('admin.teachers.index') }}" class="sidebar-menu-item block px-4 py-3 rounded-lg mb-2 @if(request()->routeIs('admin.teachers.*')) active @endif">
+                <a href="{{ route('admin.teachers.index') }}"
+                    class="sidebar-menu-item block px-4 py-3 rounded-lg mb-2 @if (request()->routeIs('admin.teachers.*')) active @endif">
                     <i class="fas fa-chalkboard-user w-5"></i>
                     <span class="ml-3">Guru</span>
                 </a>
 
                 <!-- Jurusan -->
-                <a href="{{ route('admin.majors.index') }}" class="sidebar-menu-item block px-4 py-3 rounded-lg mb-2 @if(request()->routeIs('admin.majors.*')) active @endif">
+                <a href="{{ route('admin.majors.index') }}"
+                    class="sidebar-menu-item block px-4 py-3 rounded-lg mb-2 @if (request()->routeIs('admin.majors.*')) active @endif">
                     <i class="fas fa-book w-5"></i>
                     <span class="ml-3">Jurusan</span>
                 </a>
 
                 <!-- Jabatan -->
-                <a href="{{ route('admin.positions.index') }}" class="sidebar-menu-item block px-4 py-3 rounded-lg mb-2 @if(request()->routeIs('admin.positions.*')) active @endif">
+                <a href="{{ route('admin.positions.index') }}"
+                    class="sidebar-menu-item block px-4 py-3 rounded-lg mb-2 @if (request()->routeIs('admin.positions.*')) active @endif">
                     <i class="fas fa-briefcase w-5"></i>
                     <span class="ml-3">Jabatan</span>
                 </a>
 
                 <!-- Artikel -->
-                <a href="{{ route('admin.articles.index') }}" class="sidebar-menu-item block px-4 py-3 rounded-lg mb-2 @if(request()->routeIs('admin.articles.*')) active @endif">
+                <a href="{{ route('admin.articles.index') }}"
+                    class="sidebar-menu-item block px-4 py-3 rounded-lg mb-2 @if (request()->routeIs('admin.articles.*')) active @endif">
                     <i class="fas fa-newspaper w-5"></i>
                     <span class="ml-3">Artikel</span>
                 </a>
 
                 <!-- Tentang Sekolah -->
-                <a href="{{ route('admin.about-school.index') }}" class="sidebar-menu-item block px-4 py-3 rounded-lg mb-2 @if(request()->routeIs('admin.about-school.*')) active @endif">
+                <a href="{{ route('admin.about-school.index') }}"
+                    class="sidebar-menu-item block px-4 py-3 rounded-lg mb-2 @if (request()->routeIs('admin.about-school.*')) active @endif">
                     <i class="fas fa-school w-5"></i>
                     <span class="ml-3">Tentang Sekolah</span>
                 </a>
@@ -277,7 +294,8 @@
             <div class="px-4 mb-6">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit" class="sidebar-menu-item w-full text-left px-4 py-3 rounded-lg hover:bg-red-600 hover:bg-opacity-20">
+                    <button type="submit"
+                        class="sidebar-menu-item w-full text-left px-4 py-3 rounded-lg hover:bg-red-600 hover:bg-opacity-20">
                         <i class="fas fa-sign-out-alt w-5"></i>
                         <span class="ml-3">Keluar</span>
                     </button>
@@ -300,7 +318,8 @@
                         <button class="text-gray-400 hover:text-purple-400 transition">
                             <i class="fas fa-bell text-xl"></i>
                         </button>
-                        <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center cursor-pointer hover:ring-2 hover:ring-purple-400">
+                        <div
+                            class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center cursor-pointer hover:ring-2 hover:ring-purple-400">
                             <i class="fas fa-user text-white"></i>
                         </div>
                     </div>
@@ -321,7 +340,8 @@
                 @endif
 
                 @if (session('success'))
-                    <div class="mb-6 p-4 bg-green-500 bg-opacity-20 border border-green-500 border-opacity-50 rounded-lg">
+                    <div id="success-alert"
+                        class="mb-6 p-4 bg-green-500 bg-opacity-20 border border-green-500 border-opacity-50 rounded-lg">
                         <p class="text-green-300 flex items-center gap-2">
                             <i class="fas fa-check-circle"></i>
                             {{ session('success') }}
@@ -348,6 +368,11 @@
                 }
             });
         });
+
+        setTimeout(() => {
+            document.getElementById('success-alert').style.display = 'none';
+        }, 5000);
     </script>
 </body>
+
 </html>

@@ -13,7 +13,7 @@
         <div class="card-cosmic rounded-lg p-8">
             <h2 class="text-2xl font-bold text-white mb-6">Tambah Guru Baru</h2>
 
-            <form method="POST" action="{{ route('admin.teachers.store') }}" class="space-y-6">
+            <form method="POST" action="{{ route('admin.teachers.store') }}" enctype="multipart/form-data" class="space-y-6">
                 @csrf
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

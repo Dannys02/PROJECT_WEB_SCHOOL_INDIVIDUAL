@@ -6,18 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Models\Teacher;
 use App\Models\Position;
 use Illuminate\Http\Request;
-use Illumintae\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class TeacherController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Teacher::with('jabatan');
+        $query = Teacher::with('positions');
 
         if ($request->filled('search')) {
             $search = $request->input('search');
             $query->where('name', 'like', "%{$search}%")
-                  ->orWhere('nip', 'like', "%{$search}%");
+                ->orWhere('nip', 'like', "%{$search}%");
         }
 
         $teachers = $query->paginate(15);
@@ -35,13 +35,20 @@ class TeacherController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'nip' => 'required|string|max:255|unique:teachers,nip',
-            'gender' => 'required|enum:Laki-laki,Perempuan',
+            'gender' => 'required|in:Laki-laki,Perempuan',
             'address' => 'required|string',
-            'teacher_picture' => 'nullable|string',
+            'teacher_picture' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'position_id' => 'required|exists:positions,id',
             'lesson' => 'nullable|string',
             'social_media' => 'nullable|string',
         ]);
+
+        if ($request->hasFile('teacher_picture')) {
+            $file = $request->file('teacher_picture');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('teachers', $filename, 'public');
+            $validated['teacher_picture'] = $filename;
+        }
 
         Teacher::create($validated);
         return redirect()->route('admin.teachers.index')->with('success', 'Guru berhasil ditambahkan');
@@ -49,7 +56,7 @@ class TeacherController extends Controller
 
     public function show(Teacher $teacher)
     {
-        $teacher->load('jabatan');
+        $teacher->load('positions');
         return view('admin.teachers.show', ['teacher' => $teacher]);
     }
 
@@ -63,12 +70,22 @@ class TeacherController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'nip' => 'required|string|max:255|unique:teachers,nip,',
-            'gender' => 'required|enum:Laki-laki,Perempuan',
+            'nip' => 'required|string|max:255|unique:teachers,nip,' . $teacher->id,
+            'gender' => 'required|in:Laki-laki,Perempuan',
             'address' => 'required|string',
-            'teacher_picture' => 'nullable|string',
+            'teacher_picture' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'position_id' => 'required|exists:positions,id',
         ]);
+
+        if ($request->hasFile('teacher_picture')) {
+            if ($teacher->teacher_picture) {
+                Storage::disk('public')->delete('teachers/' . $teacher->teacher_picture);
+            }
+            $file = $request->file('teacher_picture');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('teachers', $filename, 'public');
+            $validated['teacher_picture'] = 'teachers/' . $filename;
+        }
 
         $teacher->update($validated);
         return redirect()->route('admin.teachers.index')->with('success', 'Guru berhasil diperbarui');
@@ -76,6 +93,9 @@ class TeacherController extends Controller
 
     public function destroy(Teacher $teacher)
     {
+        if ($teacher->teacher_picture) {
+            Storage::disk('public')->delete('teachers/' . $teacher->teacher_picture);
+        }
         $teacher->delete();
         return redirect()->route('admin.teachers.index')->with('success', 'Guru berhasil dihapus');
     }

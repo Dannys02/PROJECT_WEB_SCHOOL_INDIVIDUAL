@@ -10,6 +10,10 @@ use App\Http\Controllers\Admin\PositionController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\AboutSchoolController;
 
+Route::get('/', function () {
+    return redirect()->route('admin.dashboard');
+});
+
 //Auth Routes
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
