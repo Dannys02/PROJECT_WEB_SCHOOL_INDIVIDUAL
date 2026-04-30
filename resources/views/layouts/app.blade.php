@@ -27,6 +27,11 @@
             border-right: 1px solid rgba(168, 85, 247, 0.2);
         }
 
+        .sidebar-gradients::-webkit-scrollbar {
+            background: transparent;
+            border-radius: 10px;
+        }
+
         .sidebar-menu-item {
             position: relative;
             transition: all 0.3s ease;

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Teacher;
 use App\Models\Position;
 use Illuminate\Http\Request;
+use Illumintae\Support\Facades\File;
 
 class TeacherController extends Controller
 {
@@ -15,7 +16,7 @@ class TeacherController extends Controller
 
         if ($request->filled('search')) {
             $search = $request->input('search');
-            $query->where('nama_guru', 'like', "%{$search}%")
+            $query->where('name', 'like', "%{$search}%")
                   ->orWhere('nip', 'like', "%{$search}%");
         }
 
@@ -32,12 +33,14 @@ class TeacherController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nama_guru' => 'required|string|max:255',
-            'nip' => 'required|string|max:255|unique:teachers',
-            'jenis_kelamin_guru' => 'required|string',
-            'alamat' => 'required|string',
-            'foto_guru' => 'nullable|string',
-            'jabatan_id' => 'nullable|exists:positions,id',
+            'name' => 'required|string|max:255',
+            'nip' => 'required|string|max:255|unique:teachers,nip',
+            'gender' => 'required|enum:Laki-laki,Perempuan',
+            'address' => 'required|string',
+            'teacher_picture' => 'nullable|string',
+            'position_id' => 'required|exists:positions,id',
+            'lesson' => 'nullable|string',
+            'social_media' => 'nullable|string',
         ]);
 
         Teacher::create($validated);
@@ -59,12 +62,12 @@ class TeacherController extends Controller
     public function update(Request $request, Teacher $teacher)
     {
         $validated = $request->validate([
-            'nama_guru' => 'required|string|max:255',
-            'nip' => 'required|string|max:255|unique:teachers,nip,' . $teacher->id,
-            'jenis_kelamin_guru' => 'required|string',
-            'alamat' => 'required|string',
-            'foto_guru' => 'nullable|string',
-            'jabatan_id' => 'nullable|exists:positions,id',
+            'name' => 'required|string|max:255',
+            'nip' => 'required|string|max:255|unique:teachers,nip,',
+            'gender' => 'required|enum:Laki-laki,Perempuan',
+            'address' => 'required|string',
+            'teacher_picture' => 'nullable|string',
+            'position_id' => 'required|exists:positions,id',
         ]);
 
         $teacher->update($validated);
