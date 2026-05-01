@@ -22,7 +22,7 @@ class Teacher extends Model
         return $this->belongsTo(Major::class);
     }
 
-    public function positions()
+    public function position()
     {
         return $this->belongsTo(Position::class);
     }

@@ -50,12 +50,12 @@
                 <tbody class="text-gray-300">
                     @forelse($teachers as $key => $teacher)
                         <tr>
-                                    <td class="px-6 py-3">{{ $key + 1 }}</td>
-                            <td class="px-6 py-3">
+                            <td class="px-6 py-3 text-center">{{ $key + 1 }}</td>
+                            <td class="px-3 py-3">
                                 @if($teacher->teacher_picture)
-                                    <img src="{{ asset('storage/' . $teacher->teacher_picture) }}" alt="Foto Guru" class="w-16 h-16 object-cover rounded-full">
+                                    <img src="{{ asset('storage/teachers/' . $teacher->teacher_picture) }}" alt="Foto Guru" class="aspect-square h-16 object-cover rounded-full">
                                 @else
-                                    <div class="bg-gray-300 border-2 border-dashed rounded-xl w-16 h-16" />
+                                    <div class="bg-gray-300 border-2 border-dashed rounded-xl w-16 h-16"></div>
                                 @endif
                             </td>
                             <td class="px-6 py-3 font-semibold text-white">{{ $teacher->name ?? 'N/A' }}</td>
@@ -65,7 +65,7 @@
                                     {{ $teacher->gender ?? 'N/A' }}
                                 </span>
                             </td>
-                            <td class="px-6 py-3 text-sm">{{ $teacher->positions->position ?? 'N/A' }}</td>
+                            <td class="px-6 py-3 text-sm">{{ $teacher->position->position ?? 'N/A' }}</td>
                             <td class="px-6 py-3 text-center">
                                 <div class="flex items-center justify-center gap-2">
                                     <a href="{{ route('admin.teachers.show', $teacher->id) }}" class="px-3 py-1 bg-blue-500 bg-opacity-20 text-blue-300 rounded hover:bg-opacity-40 transition text-sm">

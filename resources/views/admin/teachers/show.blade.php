@@ -11,14 +11,15 @@
 
         <div class="card-cosmic rounded-lg overflow-hidden">
             <!-- Header -->
-            <div class="bg-gradient-to-r from-blue-600 to-blue-800 px-8 py-6 relative">
+            <div class="px-8 py-6 relative">
                 <div class="flex items-start justify-between">
                     <div class="flex items-center gap-4">
-                        <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-gray-800 font-bold text-2xl">
-                            {{ substr($teacher->nama_guru ?? 'G', 0, 1) }}
+                        <div class="w-20 h-20 rounded-full flex items-center justify-center text-gray-800 font-bold text-2xl">
+                            {{-- {{ substr($teacher->name ?? 'G', 0, 1) }} --}}
+                            <img src="{{ asset('storage/teachers/' . $teacher->teacher_picture) }}" alt="{{ $teacher->name }}" class="rounded-full w-full h-full object-cover">
                         </div>
                         <div>
-                            <h2 class="text-3xl font-bold text-white mb-1">{{ $teacher->nama_guru ?? 'N/A' }}</h2>
+                            <h2 class="text-3xl font-bold text-white mb-1">{{ $teacher->name ?? 'N/A' }}</h2>
                             <p class="text-blue-100">NIP: {{ $teacher->nip ?? 'N/A' }}</p>
                         </div>
                     </div>
@@ -44,7 +45,7 @@
                     <div class="space-y-6">
                         <div>
                             <p class="text-gray-400 text-sm mb-1">Nama Lengkap</p>
-                            <p class="text-white font-semibold text-lg">{{ $teacher->nama_guru ?? 'N/A' }}</p>
+                            <p class="text-white font-semibold text-lg">{{ $teacher->name ?? 'N/A' }}</p>
                         </div>
 
                         <div>
@@ -56,7 +57,7 @@
                             <p class="text-gray-400 text-sm mb-1">Jenis Kelamin</p>
                             <p class="text-white font-semibold text-lg">
                                 <span class="inline-block px-3 py-1 bg-blue-500 bg-opacity-20 text-blue-300 rounded">
-                                    {{ $teacher->jenis_kelamin_guru ?? 'N/A' }}
+                                    {{ $teacher->gender ?? 'N/A' }}
                                 </span>
                             </p>
                         </div>
@@ -64,30 +65,36 @@
                         <div>
                             <p class="text-gray-400 text-sm mb-1">Jabatan</p>
                             <p class="text-white font-semibold text-lg">
-                                {{ $teacher->jabatan?->nama_jabatan ?? 'Belum ditentukan' }}
+                                {{ $teacher->position->position ?? 'Belum ditentukan' }}
                             </p>
                         </div>
                     </div>
 
                     <!-- Right Column -->
-                    <div class="space-y-6">
+                    {{-- <div class="space-y-6">
                         <div>
                             <p class="text-gray-400 text-sm mb-1">Foto Guru</p>
-                            @if($teacher->foto_guru)
-                                <img src="{{ asset($teacher->foto_guru) }}" alt="{{ $teacher->nama_guru }}" class="rounded-lg max-w-xs h-auto">
+                            @if($teacher->teacher_picture)
+                                <img src="{{ asset('storage/teachers/' . $teacher->teacher_picture) }}" alt="{{ $teacher->name }}" class="w-full h-62 object-cover rounded-full">
                             @else
                                 <div class="w-48 h-48 bg-gray-800 rounded-lg flex items-center justify-center text-gray-500">
                                     <i class="fas fa-image text-4xl"></i>
                                 </div>
                             @endif
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <!-- Alamat -->
                 <div class="border-t border-purple-500 border-opacity-30 pt-6">
                     <p class="text-gray-400 text-sm mb-2">Alamat</p>
-                    <p class="text-white text-base leading-relaxed">{{ $teacher->alamat ?? 'N/A' }}</p>
+                    <p class="text-white text-base leading-relaxed">{{ $teacher->address ?? 'N/A' }}</p>
+                </div>
+
+                <!-- Mata Pelajaran -->
+                <div class="border-t border-purple-500 border-opacity-30 pt-6">
+                    <p class="text-gray-400 text-sm mb-2">Mata Pelajaran</p>
+                    <p class="text-white text-base leading-relaxed">{{ $teacher->lessons ?? 'Belum ditentukan' }}</p>
                 </div>
 
                 <!-- Info Tambahan -->

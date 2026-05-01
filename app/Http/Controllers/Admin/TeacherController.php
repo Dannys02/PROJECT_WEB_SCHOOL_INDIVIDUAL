@@ -12,7 +12,7 @@ class TeacherController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Teacher::with('positions');
+        $query = Teacher::with('position');
 
         if ($request->filled('search')) {
             $search = $request->input('search');
@@ -39,7 +39,7 @@ class TeacherController extends Controller
             'address' => 'required|string',
             'teacher_picture' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'position_id' => 'required|exists:positions,id',
-            'lesson' => 'nullable|string',
+            'lessons' => 'nullable|string',
             'social_media' => 'nullable|string',
         ]);
 
@@ -56,13 +56,14 @@ class TeacherController extends Controller
 
     public function show(Teacher $teacher)
     {
-        $teacher->load('positions');
+        $teacher->load('position');
         return view('admin.teachers.show', ['teacher' => $teacher]);
     }
 
     public function edit(Teacher $teacher)
     {
         $positions = Position::all();
+        $teacher->load('position');
         return view('admin.teachers.edit', ['teacher' => $teacher, 'positions' => $positions]);
     }
 
@@ -75,6 +76,8 @@ class TeacherController extends Controller
             'address' => 'required|string',
             'teacher_picture' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'position_id' => 'required|exists:positions,id',
+            'lessons' => 'nullable|string',
+            'social_media' => 'nullable|string',
         ]);
 
         if ($request->hasFile('teacher_picture')) {
@@ -84,7 +87,7 @@ class TeacherController extends Controller
             $file = $request->file('teacher_picture');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('teachers', $filename, 'public');
-            $validated['teacher_picture'] = 'teachers/' . $filename;
+            $validated['teacher_picture'] = $filename;
         }
 
         $teacher->update($validated);
