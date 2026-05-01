@@ -86,7 +86,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="px-6 py-8 text-center text-gray-400">
+                            <td colspan="7" class="px-6 py-8 text-center text-gray-400">
                                 <i class="fas fa-inbox text-4xl mb-2 block"></i>
                                 Tidak ada data guru
                             </td>

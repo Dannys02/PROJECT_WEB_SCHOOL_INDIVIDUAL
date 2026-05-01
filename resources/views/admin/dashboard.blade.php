@@ -212,10 +212,11 @@
                     <div class="flex items-center justify-between p-3 bg-gray-900 bg-opacity-30 rounded hover:bg-opacity-50 transition">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center text-white font-semibold text-sm">
-                                {{ substr($student->nama_siswa ?? 'S', 0, 1) }}
+                                {{-- {{ substr($student->name ?? 'S', 0, 1) }} --}}
+                                <img src="{{ asset('storage/students/' . $student->student_picture) }}" alt="{{ $student->name }}" class="rounded-full w-full h-full object-cover">
                             </div>
                             <div>
-                                <p class="text-sm font-semibold text-white">{{ $student->nama_siswa ?? 'N/A' }}</p>
+                                <p class="text-sm font-semibold text-white">{{ $student->name ?? 'N/A' }}</p>
                                 <p class="text-xs text-gray-400">{{ $student->nisn ?? 'NISN N/A' }}</p>
                             </div>
                         </div>

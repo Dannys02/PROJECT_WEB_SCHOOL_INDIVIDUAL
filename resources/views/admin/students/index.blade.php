@@ -39,6 +39,7 @@
                 <thead class="font-semibold text-white">
                     <tr>
                         <th class="px-6 py-3 text-left">No</th>
+                        <th class="px-6 py-3 text-left">Foto</th>
                         <th class="px-6 py-3 text-left">Nama Siswa</th>
                         <th class="px-6 py-3 text-left">NISN</th>
                         <th class="px-6 py-3 text-left">Jenis Kelamin</th>
@@ -49,15 +50,22 @@
                 <tbody class="text-gray-300">
                     @forelse($students as $key => $student)
                         <tr>
-                            <td class="px-6 py-3">{{ $key + 1 }}</td>
-                            <td class="px-6 py-3 font-semibold text-white">{{ $student->nama_siswa ?? 'N/A' }}</td>
+                            <td class="px-6 py-3 text-center">{{ $key + 1 }}</td>
+                            <td class="px-3 py-3">
+                                @if($student->student_picture)
+                                    <img src="{{ asset('storage/students/' . $student->student_picture) }}" alt="Foto Siswa" class="aspect-square h-16 object-cover rounded-full">
+                                @else
+                                    <div class="bg-gray-300 border-2 border-dashed rounded-xl w-16 h-16"></div>
+                                @endif
+                            </td>
+                            <td class="px-6 py-3 font-semibold text-white">{{ $student->name ?? 'N/A' }}</td>
                             <td class="px-6 py-3">{{ $student->nisn ?? 'N/A' }}</td>
                             <td class="px-6 py-3">
                                 <span class="inline-block px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-300 rounded text-xs">
-                                    {{ $student->jenis_kelamin ?? 'N/A' }}
+                                    {{ $student->gender ?? 'N/A' }}
                                 </span>
                             </td>
-                            <td class="px-6 py-3 text-sm">{{ substr($student->alamat ?? 'N/A', 0, 30) }}...</td>
+                            <td class="px-6 py-3 text-sm">{{ substr($student->address ?? 'N/A', 0, 30) }}...</td>
                             <td class="px-6 py-3 text-center">
                                 <div class="flex items-center justify-center gap-2">
                                     <a href="{{ route('admin.students.show', $student->id) }}" class="px-3 py-1 bg-blue-500 bg-opacity-20 text-blue-300 rounded hover:bg-opacity-40 transition text-sm">

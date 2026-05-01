@@ -14,7 +14,7 @@ class MajorController extends Controller
 
         if ($request->filled('search')) {
             $search = $request->input('search');
-            $query->where('nama_jurusan', 'like', "%{$search}%");
+            $query->where('major_name', 'like', "%{$search}%");
         }
 
         $majors = $query->paginate(15);
@@ -29,9 +29,10 @@ class MajorController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nama_jurusan' => 'required|string|max:255|unique:majors',
-            'logo_jurusan' => 'nullable|string',
-            'tentang_jurusan' => 'required|string',
+            'major_name' => 'required|string|max:255|unique:majors',
+            'major_logo' => 'nullable|string',
+            'about_major' => 'required|string',
+            'class' => 'required|string',
         ]);
 
         Major::create($validated);
@@ -51,9 +52,9 @@ class MajorController extends Controller
     public function update(Request $request, Major $major)
     {
         $validated = $request->validate([
-            'nama_jurusan' => 'required|string|max:255|unique:majors,nama_jurusan,' . $major->id,
-            'logo_jurusan' => 'nullable|string',
-            'tentang_jurusan' => 'required|string',
+            'major_name' => 'required|string|max:255|unique:majors,major_name,' . $major->id,
+            'major_logo' => 'nullable|string',
+            'about_major' => 'required|string',
         ]);
 
         $major->update($validated);

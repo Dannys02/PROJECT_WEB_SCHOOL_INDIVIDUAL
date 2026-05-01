@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('nisn')->unique();
-            $table->enum('gender', ['male', 'female']);
+            $table->enum('gender', ['Laki-laki', 'Perempuan']);
             $table->string('address');
             $table->string('student_picture')->nullable();
             $table->string('social_media')->nullable();

@@ -11,14 +11,15 @@
 
         <div class="card-cosmic rounded-lg overflow-hidden">
             <!-- Header -->
-            <div class="bg-gradient-to-r from-purple-600 to-purple-800 px-8 py-6 relative">
+            <div class="px-8 py-6 relative">
                 <div class="flex items-start justify-between">
                     <div class="flex items-center gap-4">
-                        <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-gray-800 font-bold text-2xl">
-                            {{ substr($student->nama_siswa ?? 'S', 0, 1) }}
+                        <div class="w-20 h-20 rounded-full flex items-center justify-center text-gray-800 font-bold text-2xl">
+                            {{-- {{ substr($student->name ?? 'S', 0, 1) }} --}}
+                            <img src="{{ asset('storage/students/' . $student->student_picture) }}" alt="{{ $student->name }}" class="rounded-full w-full h-full object-cover">
                         </div>
                         <div>
-                            <h2 class="text-3xl font-bold text-white mb-1">{{ $student->nama_siswa ?? 'N/A' }}</h2>
+                            <h2 class="text-3xl font-bold text-white mb-1">{{ $student->name ?? 'N/A' }}</h2>
                             <p class="text-purple-100">NISN: {{ $student->nisn ?? 'N/A' }}</p>
                         </div>
                     </div>
@@ -44,7 +45,7 @@
                     <div class="space-y-6">
                         <div>
                             <p class="text-gray-400 text-sm mb-1">Nama Lengkap</p>
-                            <p class="text-white font-semibold text-lg">{{ $student->nama_siswa ?? 'N/A' }}</p>
+                            <p class="text-white font-semibold text-lg">{{ $student->name ?? 'N/A' }}</p>
                         </div>
 
                         <div>
@@ -56,31 +57,31 @@
                             <p class="text-gray-400 text-sm mb-1">Jenis Kelamin</p>
                             <p class="text-white font-semibold text-lg">
                                 <span class="inline-block px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-300 rounded">
-                                    {{ $student->jenis_kelamin ?? 'N/A' }}
+                                    {{ $student->gender ?? 'N/A' }}
                                 </span>
                             </p>
                         </div>
                     </div>
 
                     <!-- Right Column -->
-                    <div class="space-y-6">
+                    {{-- <div class="space-y-6">
                         <div>
                             <p class="text-gray-400 text-sm mb-1">Foto Siswa</p>
-                            @if($student->foto_siswa)
-                                <img src="{{ asset($student->foto_siswa) }}" alt="{{ $student->nama_siswa }}" class="rounded-lg max-w-xs h-auto">
+                            @if($student->student_picture)
+                                <img src="{{ asset('storage/students/' . $student->student_picture) }}" alt="{{ $student->name }}" class="rounded-lg max-w-xs h-auto">
                             @else
                                 <div class="w-48 h-48 bg-gray-800 rounded-lg flex items-center justify-center text-gray-500">
                                     <i class="fas fa-image text-4xl"></i>
                                 </div>
                             @endif
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <!-- Alamat -->
                 <div class="border-t border-purple-500 border-opacity-30 pt-6">
                     <p class="text-gray-400 text-sm mb-2">Alamat</p>
-                    <p class="text-white text-base leading-relaxed">{{ $student->alamat ?? 'N/A' }}</p>
+                    <p class="text-white text-base leading-relaxed">{{ $student->address ?? 'N/A' }}</p>
                 </div>
 
                 <!-- Info Tambahan -->

@@ -44,9 +44,9 @@
                         <label for="gender" class="block text-sm font-semibold text-purple-200 mb-2">Jenis Kelamin</label>
                         <select id="gender" name="gender" class="form-input-cosmic w-full px-4 py-3 rounded-lg"
                             required>
-                            <option value="">Pilih Jenis Kelamin</option>
-                            <option value="Laki-laki" @selected(old('gender', $teacher->gender ?? '') == 'Laki-laki')>Laki-laki</option>
-                            <option value="Perempuan" @selected(old('gender', $teacher->gender ?? '') == 'Perempuan')>Perempuan</option>
+                            <option class="text-black" value="">Pilih Jenis Kelamin</option>
+                            <option class="text-black" value="Laki-laki" @selected(old('gender', $teacher->gender ?? '') == 'Laki-laki')>Laki-laki</option>
+                            <option class="text-black" value="Perempuan" @selected(old('gender', $teacher->gender ?? '') == 'Perempuan')>Perempuan</option>
                         </select>
                         @error('gender')
                             <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
@@ -57,9 +57,9 @@
                     <div>
                         <label for="position_id" class="block text-sm font-semibold text-purple-200 mb-2">Jabatan</label>
                         <select id="position_id" name="position_id" class="form-input-cosmic w-full px-4 py-3 rounded-lg">
-                            <option value="">Pilih Jabatan</option>
+                            <option class="text-black" value="">Pilih Jabatan</option>
                             @forelse($positions ?? [] as $position)
-                                <option value="{{ $position->id }}" @selected(old('position_id', $teacher->position_id ?? '') == $position->id)>
+                                <option class="text-black" value="{{ $position->id }}" @selected(old('position_id', $teacher->position_id ?? '') == $position->id)>
                                     {{ $position->position ?? 'N/A' }}
                                 </option>
                             @empty

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\facades\Storage;
 
 class StudentController extends Controller
 {
@@ -14,8 +15,8 @@ class StudentController extends Controller
 
         if ($request->filled('search')) {
             $search = $request->input('search');
-            $query->where('nama_siswa', 'like', "%{$search}%")
-                  ->orWhere('nisn', 'like', "%{$search}%");
+            $query->where('name', 'like', "%{$search}%")
+                ->orWhere('nisn', 'like', "%{$search}%");
         }
 
         $students = $query->paginate(15);
@@ -30,12 +31,20 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nama_siswa' => 'required|string|max:255',
-            'nisn' => 'required|string|max:255|unique:students',
-            'jenis_kelamin' => 'required|string',
-            'alamat' => 'required|string',
-            'foto_siswa' => 'nullable|string',
+            'name' => 'required|string|max:255',
+            'nisn' => 'required|string|max:255|unique:students,nisn',
+            'gender' => 'required|in:Laki-laki,Perempuan',
+            'address' => 'required|string',
+            'student_picture' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'social_media' => 'nullable|string',
         ]);
+
+        if ($request->hasFile('student_picture')) {
+            $file = $request->file('student_picture');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('students', $filename, 'public');
+            $validated['student_picture'] = $filename;
+        }
 
         Student::create($validated);
         return redirect()->route('admin.students.index')->with('success', 'Siswa berhasil ditambahkan');
@@ -54,12 +63,23 @@ class StudentController extends Controller
     public function update(Request $request, Student $student)
     {
         $validated = $request->validate([
-            'nama_siswa' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'nisn' => 'required|string|max:255|unique:students,nisn,' . $student->id,
-            'jenis_kelamin' => 'required|string',
-            'alamat' => 'required|string',
-            'foto_siswa' => 'nullable|string',
+            'gender' => 'required|in:Laki-laki,Perempuan',
+            'address' => 'required|string',
+            'student_picture' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'social_media' => 'nullable|string',
         ]);
+
+        if ($request->hasFile('student_picture')) {
+            if ($student->student_picture) {
+                Storage::disk('public')->delete('students/' . $student->student_picture);
+            }
+            $file = $request->file('student_picture');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('students', $filename, 'public');
+            $validated['student_picture'] = $filename;
+        }
 
         $student->update($validated);
         return redirect()->route('admin.students.index')->with('success', 'Siswa berhasil diperbarui');
@@ -67,6 +87,9 @@ class StudentController extends Controller
 
     public function destroy(Student $student)
     {
+        if ($student->student_picture) {
+            Storage::disk('public')->delete('students/' . $student->student_picture);
+        }
         $student->delete();
         return redirect()->route('admin.students.index')->with('success', 'Siswa berhasil dihapus');
     }

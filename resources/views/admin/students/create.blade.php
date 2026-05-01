@@ -12,23 +12,23 @@
         <div class="card-cosmic rounded-lg p-8">
             <h2 class="text-2xl font-bold text-white mb-6">Tambah Siswa Baru</h2>
 
-            <form method="POST" action="{{ route('admin.students.store') }}" class="space-y-6">
+            <form method="POST" action="{{ route('admin.students.store') }}" enctype="multipart/form-data" class="space-y-6">
                 @csrf
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Nama Siswa -->
                     <div>
-                        <label for="nama_siswa" class="block text-sm font-semibold text-purple-200 mb-2">Nama Siswa</label>
+                        <label for="name" class="block text-sm font-semibold text-purple-200 mb-2">Nama Siswa</label>
                         <input
                             type="text"
-                            id="nama_siswa"
-                            name="nama_siswa"
-                            value="{{ old('nama_siswa') }}"
+                            id="name"
+                            name="name"
+                            value="{{ old('name') }}"
                             placeholder="Masukkan nama siswa"
                             class="form-input-cosmic w-full px-4 py-3 rounded-lg"
                             required
                         >
-                        @error('nama_siswa')
+                        @error('name')
                             <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
@@ -52,29 +52,25 @@
 
                     <!-- Jenis Kelamin -->
                     <div>
-                        <label for="jenis_kelamin" class="block text-sm font-semibold text-purple-200 mb-2">Jenis Kelamin</label>
-                        <select id="jenis_kelamin" name="jenis_kelamin" class="form-input-cosmic w-full px-4 py-3 rounded-lg" required>
-                            <option value="">Pilih Jenis Kelamin</option>
-                            <option value="Laki-laki" @selected(old('jenis_kelamin') == 'Laki-laki')>Laki-laki</option>
-                            <option value="Perempuan" @selected(old('jenis_kelamin') == 'Perempuan')>Perempuan</option>
+                        <label for="gender" class="block text-sm font-semibold text-purple-200 mb-2">Jenis Kelamin</label>
+                        <select id="gender" name="gender" class="form-input-cosmic w-full px-4 py-3 rounded-lg" required>
+                            <option class="text-black" value="">Pilih Jenis Kelamin</option>
+                            <option class="text-black" value="Laki-laki" @selected(old('gender') == 'Laki-laki')>Laki-laki</option>
+                            <option class="text-black" value="Perempuan" @selected(old('gender') == 'Perempuan')>Perempuan</option>
                         </select>
-                        @error('jenis_kelamin')
+                        @error('gender')
                             <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <!-- Foto Siswa -->
                     <div>
-                        <label for="foto_siswa" class="block text-sm font-semibold text-purple-200 mb-2">Foto Siswa</label>
-                        <input
-                            type="text"
-                            id="foto_siswa"
-                            name="foto_siswa"
-                            value="{{ old('foto_siswa') }}"
-                            placeholder="URL atau path foto"
-                            class="form-input-cosmic w-full px-4 py-3 rounded-lg"
-                        >
-                        @error('foto_siswa')
+                        <label for="student_picture" class="block text-sm font-semibold text-purple-200 mb-2">Foto
+                            Siswa</label>
+                        <input type="file" id="student_picture" name="student_picture"
+                            value="{{ old('student_picture') }}"
+                            class="form-input-cosmic w-full px-4 py-3 rounded-lg">
+                        @error('student_picture')
                             <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
@@ -82,16 +78,16 @@
 
                 <!-- Alamat -->
                 <div>
-                    <label for="alamat" class="block text-sm font-semibold text-purple-200 mb-2">Alamat</label>
+                    <label for="address" class="block text-sm font-semibold text-purple-200 mb-2">Alamat</label>
                     <textarea
-                        id="alamat"
-                        name="alamat"
+                        id="address"
+                        name="address"
                         rows="4"
                         placeholder="Masukkan alamat lengkap siswa"
                         class="form-input-cosmic w-full px-4 py-3 rounded-lg"
                         required
-                    >{{ old('alamat') }}</textarea>
-                    @error('alamat')
+                    >{{ old('address') }}</textarea>
+                    @error('address')
                         <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
