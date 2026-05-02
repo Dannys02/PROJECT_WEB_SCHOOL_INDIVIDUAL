@@ -11,9 +11,9 @@ class Major extends Model
         'major_name',
         'major_logo',
         'major_about',
-        'class',
-        'student_id',
-        'teacher_id',
+        // 'class',
+        // 'student_id',
+        // 'teacher_id',
     ];
 
     public function students() {

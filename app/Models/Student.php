@@ -9,6 +9,8 @@ class Student extends Model
     protected $table = 'students';
     protected $fillable = [
         'name',
+        'major_id',
+        'class',
         'nisn',
         'gender',
         'address',
@@ -16,7 +18,7 @@ class Student extends Model
         'social_media',
     ];
 
-    public function majors()
+    public function major()
     {
         return $this->belongsTo(Major::class);
     }

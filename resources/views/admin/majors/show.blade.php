@@ -11,14 +11,15 @@
 
         <div class="card-cosmic rounded-lg overflow-hidden">
             <!-- Header -->
-            <div class="bg-gradient-to-r from-green-600 to-green-800 px-8 py-6 relative">
+            <div class="px-8 py-6 relative">
                 <div class="flex items-start justify-between">
                     <div class="flex items-center gap-4">
-                        <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-gray-800 font-bold text-2xl">
-                            <i class="fas fa-book"></i>
+                        <div class="w-20 h-20 rounded-full flex items-center justify-center text-gray-800 font-bold text-2xl">
+                            {{-- <i class="fas fa-book"></i> --}}
+                            <img src="{{ asset('storage/majors/' . $major->major_logo) }}" class="h-full w-full object-cover rounded-full" alt="{{ $major->major_name }}">
                         </div>
                         <div>
-                            <h2 class="text-3xl font-bold text-white mb-1">{{ $major->nama_jurusan ?? 'N/A' }}</h2>
+                            <h2 class="text-3xl font-bold text-white mb-1">{{ $major->major_name ?? 'N/A' }}</h2>
                             <p class="text-green-100">Program Studi</p>
                         </div>
                     </div>
@@ -42,25 +43,13 @@
                 <!-- Nama Jurusan -->
                 <div>
                     <p class="text-gray-400 text-sm mb-2">Nama Jurusan</p>
-                    <p class="text-white font-semibold text-lg">{{ $major->nama_jurusan ?? 'N/A' }}</p>
-                </div>
-
-                <!-- Logo -->
-                <div class="border-t border-purple-500 border-opacity-30 pt-6">
-                    <p class="text-gray-400 text-sm mb-3">Logo Jurusan</p>
-                    @if($major->logo_jurusan)
-                        <img src="{{ asset($major->logo_jurusan) }}" alt="{{ $major->nama_jurusan }}" class="rounded-lg max-w-xs h-auto">
-                    @else
-                        <div class="w-48 h-48 bg-gray-800 rounded-lg flex items-center justify-center text-gray-500">
-                            <i class="fas fa-image text-4xl"></i>
-                        </div>
-                    @endif
+                    <p class="text-white font-semibold text-lg">{{ $major->major_name ?? 'N/A' }}</p>
                 </div>
 
                 <!-- Tentang Jurusan -->
                 <div class="border-t border-purple-500 border-opacity-30 pt-6">
                     <p class="text-gray-400 text-sm mb-3">Tentang Jurusan</p>
-                    <p class="text-white text-base leading-relaxed">{{ $major->tentang_jurusan ?? 'N/A' }}</p>
+                    <p class="text-white text-base leading-relaxed">{{ $major->major_about ?? 'N/A' }}</p>
                 </div>
 
                 <!-- Info Tambahan -->

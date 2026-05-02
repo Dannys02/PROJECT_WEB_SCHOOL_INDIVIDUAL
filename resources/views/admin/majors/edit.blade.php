@@ -10,57 +10,56 @@
         </a>
 
         <div class="card-cosmic rounded-lg p-8">
-            <h2 class="text-2xl font-bold text-white mb-6">Edit Jurusan: {{ $major->nama_jurusan ?? 'N/A' }}</h2>
+            <h2 class="text-2xl font-bold text-white mb-6">Edit Jurusan: {{ $major->major_name ?? 'N/A' }}</h2>
 
-            <form method="POST" action="{{ route('admin.majors.update', $major->id) }}" class="space-y-6">
+            <form method="POST" action="{{ route('admin.majors.update', $major->id) }}" enctype="multipart/form-data" class="space-y-6">
                 @csrf
                 @method('PUT')
 
                 <!-- Nama Jurusan -->
                 <div>
-                    <label for="nama_jurusan" class="block text-sm font-semibold text-purple-200 mb-2">Nama Jurusan</label>
+                    <label for="major_name" class="block text-sm font-semibold text-purple-200 mb-2">Nama Jurusan</label>
                     <input
                         type="text"
-                        id="nama_jurusan"
-                        name="nama_jurusan"
-                        value="{{ old('nama_jurusan', $major->nama_jurusan ?? '') }}"
+                        id="major_name"
+                        name="major_name"
+                        value="{{ old('major_name', $major->major_name ?? '') }}"
                         placeholder="Contoh: Teknik Informatika"
                         class="form-input-cosmic w-full px-4 py-3 rounded-lg"
                         required
                     >
-                    @error('nama_jurusan')
+                    @error('major_name')
                         <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <!-- Logo Jurusan -->
                 <div>
-                    <label for="logo_jurusan" class="block text-sm font-semibold text-purple-200 mb-2">Logo Jurusan</label>
+                    <label for="major_logo" class="block text-sm font-semibold text-purple-200 mb-2">Logo Jurusan</label>
                     <input
-                        type="text"
-                        id="logo_jurusan"
-                        name="logo_jurusan"
-                        value="{{ old('logo_jurusan', $major->logo_jurusan ?? '') }}"
-                        placeholder="URL atau path logo"
+                        type="file"
+                        id="major_logo"
+                        name="major_logo"
+                        value="{{ old('major_logo', $major->major_logo ?? '') }}"
                         class="form-input-cosmic w-full px-4 py-3 rounded-lg"
                     >
-                    @error('logo_jurusan')
+                    @error('major_logo')
                         <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <!-- Tentang Jurusan -->
                 <div>
-                    <label for="tentang_jurusan" class="block text-sm font-semibold text-purple-200 mb-2">Tentang Jurusan</label>
+                    <label for="major_about" class="block text-sm font-semibold text-purple-200 mb-2">Tentang Jurusan</label>
                     <textarea
-                        id="tentang_jurusan"
-                        name="tentang_jurusan"
+                        id="major_about"
+                        name="major_about"
                         rows="6"
                         placeholder="Deskripsi lengkap jurusan"
                         class="form-input-cosmic w-full px-4 py-3 rounded-lg"
                         required
-                    >{{ old('tentang_jurusan', $major->tentang_jurusan ?? '') }}</textarea>
-                    @error('tentang_jurusan')
+                    >{{ old('major_about', $major->major_about ?? '') }}</textarea>
+                    @error('major_about')
                         <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>

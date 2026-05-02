@@ -33,6 +33,11 @@
             border-radius: 10px;
         }
 
+        .tables::-webkit-scrollbar {
+            background: rgba(168, 85, 247, 0.1);
+            border-radius: 10px;
+        }
+
         .sidebar-menu-item {
             position: relative;
             transition: all 0.3s ease;
@@ -213,7 +218,7 @@
                 <div class="flex items-center justify-between">
                     <div class="nav-brand flex items-center gap-2">
                         <i class="fas fa-graduation-cap text-2xl"></i>
-                        <span class="uppercase text-sm">smpn 4 genteng</span>
+                        <span class="uppercase">smpn 4 genteng</span>
                     </div>
                     <button class="md:hidden text-gray-300 hover:text-purple-400" onclick="toggleSidebar()">
                         <i class="fas fa-times text-xl"></i>
@@ -295,7 +300,7 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit"
-                        class="sidebar-menu-item w-full text-left px-4 py-3 rounded-lg hover:bg-red-600 hover:bg-opacity-20">
+                        class="sidebar-menu-item w-full text-left text-red-600 px-4 py-3 rounded-lg hover:bg-red-600 hover:bg-opacity-20">
                         <i class="fas fa-sign-out-alt w-5"></i>
                         <span class="ml-3">Keluar</span>
                     </button>
@@ -329,7 +334,7 @@
             <!-- Page Content -->
             <div class="p-6 min-h-screen">
                 @if ($errors->any())
-                    <div class="mb-6 p-4 bg-red-500 bg-opacity-20 border border-red-500 border-opacity-50 rounded-lg">
+                    <div id="error-alert" class="mb-6 p-4 bg-red-500 bg-opacity-20 border border-red-500 border-opacity-50 rounded-lg">
                         <h3 class="text-red-300 font-semibold mb-2">Ada beberapa kesalahan:</h3>
                         <ul class="text-red-200 text-sm space-y-1">
                             @foreach ($errors->all() as $error)
@@ -371,6 +376,7 @@
 
         setTimeout(() => {
             document.getElementById('success-alert').style.display = 'none';
+            document.getElementById('error-alert').style.display = 'none';
         }, 5000);
     </script>
 </body>

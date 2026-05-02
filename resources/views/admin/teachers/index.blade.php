@@ -34,13 +34,14 @@
 
     <!-- Table -->
     <div class="card-cosmic rounded-lg overflow-hidden">
-        <div class="overflow-x-auto">
+        <div class="tables overflow-x-auto">
             <table class="table-cosmic w-full">
                 <thead class="font-semibold text-white">
                     <tr>
                         <th class="px-6 py-3 text-left">No</th>
                         <th class="px-6 py-3 text-left">Foto</th>
                         <th class="px-6 py-3 text-left">Nama Guru</th>
+                        <th class="px-6 py-3 text-left">Jurusan</th>
                         <th class="px-6 py-3 text-left">NIP</th>
                         <th class="px-6 py-3 text-left">Jenis Kelamin</th>
                         <th class="px-6 py-3 text-left">Jabatan</th>
@@ -51,7 +52,7 @@
                     @forelse($teachers as $key => $teacher)
                         <tr>
                             <td class="px-6 py-3 text-center">{{ $key + 1 }}</td>
-                            <td class="px-3 py-3">
+                            <td class="px-2 py-3">
                                 @if($teacher->teacher_picture)
                                     <img src="{{ asset('storage/teachers/' . $teacher->teacher_picture) }}" alt="Foto Guru" class="aspect-square h-16 object-cover rounded-full">
                                 @else
@@ -59,6 +60,7 @@
                                 @endif
                             </td>
                             <td class="px-6 py-3 font-semibold text-white">{{ $teacher->name ?? 'N/A' }}</td>
+                            <td class="px-6 py-3">{{ $teacher->major->major_name ?? 'N/A' }}</td>
                             <td class="px-6 py-3">{{ $teacher->nip ?? 'N/A' }}</td>
                             <td class="px-6 py-3">
                                 <span class="inline-block px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-300 rounded text-xs">
@@ -86,7 +88,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="7" class="px-6 py-8 text-center text-gray-400">
+                            <td colspan="8" class="px-6 py-8 text-center text-gray-400">
                                 <i class="fas fa-inbox text-4xl mb-2 block"></i>
                                 Tidak ada data guru
                             </td>

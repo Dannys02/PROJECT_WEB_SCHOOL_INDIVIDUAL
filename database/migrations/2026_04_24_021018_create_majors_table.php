@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('major_name', 100);
             $table->string('major_logo')->nullable();
-            $table->string('major_about')->nullable();
-            $table->enum('class', ['X', 'XI', 'XII']);
-            $table->foreignId('student_id')->constrained()->onDelete('cascade');
-            $table->foreignId('teacher_id')->constrained()->onDelete('cascade');
+            $table->longText('major_about')->nullable();
+            // $table->enum('class', ['X', 'XI', 'XII']);
+            // $table->foreignId('student_id')->constrained()->onDelete('cascade');
+            // $table->foreignId('teacher_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

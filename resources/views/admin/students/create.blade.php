@@ -33,6 +33,37 @@
                         @enderror
                     </div>
 
+                    <!-- Jurusan -->
+                    <div>
+                        <label for="major_id" class="block text-sm font-semibold text-purple-200 mb-2">Jurusan</label>
+                        <select id="major_id" name="major_id" class="form-input-cosmic w-full px-4 py-3 rounded-lg" required>
+                            <option class="text-black" value="">Pilih Jurusan</option>
+                            @forelse($majors ?? [] as $major)
+                                <option class="text-black" value="{{ $major->id }}" @selected(old('major_id') == $major->id)>
+                                    {{ $major->major_name }}
+                                </option>
+                            @empty
+                            @endforelse
+                        </select>
+                        @error('major_id')
+                            <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Kelas -->
+                    <div>
+                        <label for="class" class="block text-sm font-semibold text-purple-200 mb-2">Kelas</label>
+                        <select id="class" name="class" class="form-input-cosmic w-full px-4 py-3 rounded-lg" required>
+                            <option class="text-black" value="">Pilih Kelas</option>
+                                <option class="text-black" value="X">X</option>
+                                <option class="text-black" value="XI">XI</option>
+                                <option class="text-black" value="XII">XII</option>
+                        </select>
+                        @error('class')
+                            <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
                     <!-- NISN -->
                     <div>
                         <label for="nisn" class="block text-sm font-semibold text-purple-200 mb-2">NISN</label>

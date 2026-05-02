@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Student;
+use App\Models\Major;
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\Storage;
 
@@ -25,13 +26,15 @@ class StudentController extends Controller
 
     public function create()
     {
-        return view('admin.students.create');
+        $majors = Major::all();
+        return view('admin.students.create', ['majors' => $majors]);
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'major_id' => 'required|exists:majors,id',
             'nisn' => 'required|string|max:255|unique:students,nisn',
             'gender' => 'required|in:Laki-laki,Perempuan',
             'address' => 'required|string',
@@ -57,13 +60,15 @@ class StudentController extends Controller
 
     public function edit(Student $student)
     {
-        return view('admin.students.edit', ['student' => $student]);
+        $majors = Major::all();
+        return view('admin.students.edit', ['student' => $student, 'majors' => $majors]);
     }
 
     public function update(Request $request, Student $student)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'major_id' => 'required|exists:majors,id',
             'nisn' => 'required|string|max:255|unique:students,nisn,' . $student->id,
             'gender' => 'required|in:Laki-laki,Perempuan',
             'address' => 'required|string',

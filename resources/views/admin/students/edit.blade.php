@@ -34,6 +34,20 @@
                         @enderror
                     </div>
 
+                    <!-- Jurusan -->
+                    <div>
+                        <label for="major_id" class="block text-sm font-semibold text-purple-200 mb-2">Jurusan</label>
+                        <select id="major_id" name="major_id" class="form-input-cosmic w-full px-4 py-3 rounded-lg" required>
+                            <option value="">Pilih Jurusan</option>
+                            @foreach($majors as $major)
+                                <option value="{{ $major->id }}" @selected(old('major_id', $student->major_id ?? '') == $major->id)>{{ $major->major_name }}</option>
+                            @endforeach
+                        </select>
+                        @error('major_id')
+                            <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
                     <!-- NISN -->
                     <div>
                         <label for="nisn" class="block text-sm font-semibold text-purple-200 mb-2">NISN</label>

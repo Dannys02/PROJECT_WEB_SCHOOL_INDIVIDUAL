@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Teacher;
 use App\Models\Position;
+use App\Models\Major;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,13 +28,15 @@ class TeacherController extends Controller
     public function create()
     {
         $positions = Position::all();
-        return view('admin.teachers.create', ['positions' => $positions]);
+        $majors = Major::all();
+        return view('admin.teachers.create', ['positions' => $positions, 'majors' => $majors]);
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'major_id' => 'required|exists:majors,id',
             'nip' => 'required|string|max:255|unique:teachers,nip',
             'gender' => 'required|in:Laki-laki,Perempuan',
             'address' => 'required|string',
@@ -63,14 +66,16 @@ class TeacherController extends Controller
     public function edit(Teacher $teacher)
     {
         $positions = Position::all();
+        $majors = Major::all();
         $teacher->load('position');
-        return view('admin.teachers.edit', ['teacher' => $teacher, 'positions' => $positions]);
+        return view('admin.teachers.edit', ['teacher' => $teacher, 'positions' => $positions, 'majors' => $majors]);
     }
 
     public function update(Request $request, Teacher $teacher)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'major_id' => 'required|exists:majors,id',
             'nip' => 'required|string|max:255|unique:teachers,nip,' . $teacher->id,
             'gender' => 'required|in:Laki-laki,Perempuan',
             'address' => 'required|string',

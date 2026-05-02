@@ -39,8 +39,8 @@
                 <thead class="font-semibold text-white">
                     <tr>
                         <th class="px-6 py-3 text-left">No</th>
-                        <th class="px-6 py-3 text-left">Nama Jurusan</th>
                         <th class="px-6 py-3 text-left">Logo</th>
+                        <th class="px-6 py-3 text-left">Nama Jurusan</th>
                         <th class="px-6 py-3 text-left">Deskripsi</th>
                         <th class="px-6 py-3 text-center">Aksi</th>
                     </tr>
@@ -49,15 +49,15 @@
                     @forelse($majors as $key => $major)
                         <tr>
                             <td class="px-6 py-3">{{ $key + 1 }}</td>
-                            <td class="px-6 py-3 font-semibold text-white">{{ $major->nama_jurusan ?? 'N/A' }}</td>
-                            <td class="px-6 py-3">
-                                @if($major->logo_jurusan)
-                                    <img src="{{ asset($major->logo_jurusan) }}" alt="{{ $major->nama_jurusan }}" class="w-10 h-10 rounded">
+                            <td class="px-3 py-3">
+                                @if($major->major_logo)
+                                    <img src="{{ asset('storage/majors/' . $major->major_logo) }}" alt="{{ $major->major_name }}" class="aspect-square h-16 rounded-full object-cover">
                                 @else
                                     <span class="text-gray-500">Tidak ada</span>
                                 @endif
                             </td>
-                            <td class="px-6 py-3 text-sm">{{ substr($major->tentang_jurusan ?? 'N/A', 0, 30) }}...</td>
+                            <td class="px-6 py-3 font-semibold text-white">{{ $major->major_name ?? 'N/A' }}</td>
+                            <td class="px-6 py-3 text-sm">{{ substr($major->major_about ?? 'N/A', 0, 30) }}...</td>
                             <td class="px-6 py-3 text-center">
                                 <div class="flex items-center justify-center gap-2">
                                     <a href="{{ route('admin.majors.show', $major->id) }}" class="px-3 py-1 bg-blue-500 bg-opacity-20 text-blue-300 rounded hover:bg-opacity-40 transition text-sm">

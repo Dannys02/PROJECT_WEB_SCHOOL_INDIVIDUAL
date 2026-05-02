@@ -27,6 +27,22 @@
                         @enderror
                     </div>
 
+                    <!-- Jurusan -->
+                    <div>
+                        <label for="major_id" class="block text-sm font-semibold text-purple-200 mb-2">Jurusan</label>
+                        <select id="major_id" name="major_id" class="form-input-cosmic w-full px-4 py-3 rounded-lg">
+                            <option class="text-black" value="">Pilih Jurusan</option>
+                            @foreach($majors ?? [] as $major)
+                                <option class="text-black" value="{{ $major->id }}" @selected(old('major_id') == $major->id)>
+                                    {{ $major->major_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('major_id')
+                            <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
                     <!-- NIP -->
                     <div>
                         <label for="nip" class="block text-sm font-semibold text-purple-200 mb-2">NIP</label>
@@ -57,12 +73,11 @@
                         <label for="position_id" class="block text-sm font-semibold text-purple-200 mb-2">Jabatan</label>
                         <select id="position_id" name="position_id" class="form-input-cosmic w-full px-4 py-3 rounded-lg">
                             <option class="text-black" value="">Pilih Jabatan</option>
-                            @forelse($positions ?? [] as $position)
+                            @foreach($positions ?? [] as $position)
                                 <option class="text-black" value="{{ $position->id }}" @selected(old('position_id') == $position->id)>
                                     {{ $position->position }}
                                 </option>
-                            @empty
-                            @endforelse
+                            @endforeach
                         </select>
                         @error('position_id')
                             <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
