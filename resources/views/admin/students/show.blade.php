@@ -47,7 +47,7 @@
                             <p class="text-gray-400 text-sm mb-1">Nama Lengkap</p>
                             <p class="text-white font-semibold text-lg">{{ $student->name ?? 'N/A' }}</p>
                         </div>
-                        
+
                         <div>
                             <p class="text-gray-400 text-sm mb-1">Jurusan</p>
                             <p class="text-white font-semibold text-lg">{{ $student->major->major_name ?? 'N/A' }}</p>

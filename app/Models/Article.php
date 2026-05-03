@@ -14,7 +14,8 @@ class Article extends Model
         'image',
     ];
 
-    public function majors() {
+    public function major()
+    {
         return $this->belongsTo(Major::class);
     }
 }

@@ -54,6 +54,11 @@
                         </div>
 
                         <div>
+                            <p class="text-gray-400 text-sm mb-1">Mata Pelajaran</p>
+                            <p class="text-white font-semibold text-lg">{{ $teacher->lessons ?? 'N/A' }}</p>
+                        </div>
+
+                        <div>
                             <p class="text-gray-400 text-sm mb-1">Nomor Induk Pegawai (NIP)</p>
                             <p class="text-white font-semibold text-lg">{{ $teacher->nip ?? 'N/A' }}</p>
                         </div>
@@ -94,12 +99,6 @@
                 <div class="border-t border-purple-500 border-opacity-30 pt-6">
                     <p class="text-gray-400 text-sm mb-2">Alamat</p>
                     <p class="text-white text-base leading-relaxed">{{ $teacher->address ?? 'N/A' }}</p>
-                </div>
-
-                <!-- Mata Pelajaran -->
-                <div class="border-t border-purple-500 border-opacity-30 pt-6">
-                    <p class="text-gray-400 text-sm mb-2">Mata Pelajaran</p>
-                    <p class="text-white text-base leading-relaxed">{{ $teacher->lessons ?? 'Belum ditentukan' }}</p>
                 </div>
 
                 <!-- Info Tambahan -->
