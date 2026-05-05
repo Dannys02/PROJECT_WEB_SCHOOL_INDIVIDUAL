@@ -56,7 +56,9 @@
                                 @if($teacher->teacher_picture)
                                     <img src="{{ asset('storage/teachers/' . $teacher->teacher_picture) }}" alt="Foto Guru" class="aspect-square h-16 object-cover rounded-full">
                                 @else
-                                    <div class="bg-gray-300 border-2 border-dashed rounded-xl w-16 h-16"></div>
+                                    <div class="bg-gray-300 border-2 text-2xl text-black font-bold border-dashed rounded-full w-16 h-16 flex items-center justify-center">
+                                        {{ substr($teacher->name ?? 'N/A', 0, 1) }}
+                                    </div>
                                 @endif
                             </td>
                             <td class="px-6 py-3 font-semibold text-white">{{ $teacher->name ?? 'N/A' }}</td>

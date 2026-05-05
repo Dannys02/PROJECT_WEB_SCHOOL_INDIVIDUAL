@@ -35,7 +35,7 @@ class ArticleController extends Controller
             'title' => 'required|string|max:255',
             'article' => 'required',
             'image' => 'nullable|image|mimes:png,jpg,jpeg,webp',
-            'major_id' => 'nullable|exists:majors,id',
+            'major_id' => 'required|exists:majors,id',
         ]);
 
         if ($request->hasFile('image')) {
@@ -67,7 +67,7 @@ class ArticleController extends Controller
             'title' => 'required|string|max:255',
             'article' => 'required',
             'image' => 'nullable|image|mimes:png,jpg,jpeg,webp',
-            'major_id' => 'nullable|exists:majors,id',
+            'major_id' => 'required|exists:majors,id',
         ]);
 
         if ($request->hasFile('image')) {

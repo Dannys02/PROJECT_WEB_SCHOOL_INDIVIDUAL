@@ -31,7 +31,7 @@
                     <div>
                         <label for="major_id" class="block text-sm font-semibold text-purple-200 mb-2">Jurusan</label>
                         <select id="major_id" name="major_id" class="form-input-cosmic w-full px-4 py-3 rounded-lg">
-                            <option class="text-black" value="">Pilih Jurusan (Opsional)</option>
+                            <option class="text-black" value="">Pilih Jurusan</option>
                             @forelse($majors ?? [] as $major)
                                 <option class="text-black" value="{{ $major->id }}" @selected(old('major_id') == $major->id)>
                                     {{ $major->major_name }}
