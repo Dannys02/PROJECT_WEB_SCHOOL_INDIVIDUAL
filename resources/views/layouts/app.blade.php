@@ -320,9 +320,7 @@
                         <h1 class="text-2xl font-bold text-white">@yield('page_title', 'Admin Dashboard')</h1>
                     </div>
                     <div class="flex items-center gap-4">
-                        <button class="text-gray-400 hover:text-purple-400 transition">
-                            <i class="fas fa-bell text-xl"></i>
-                        </button>
+
                         <div
                             class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center cursor-pointer hover:ring-2 hover:ring-purple-400">
                             <i class="fas fa-user text-white"></i>
@@ -333,7 +331,7 @@
 
             <!-- Page Content -->
             <div class="p-6 min-h-screen">
-                @if ($errors->any())
+                {{-- @if ($errors->any())
                     <div id="error-alert" class="mb-6 p-4 bg-red-500 bg-opacity-20 border border-red-500 border-opacity-50 rounded-lg">
                         <h3 class="text-red-300 font-semibold mb-2">Ada beberapa kesalahan:</h3>
                         <ul class="text-red-200 text-sm space-y-1">
@@ -342,7 +340,7 @@
                             @endforeach
                         </ul>
                     </div>
-                @endif
+                @endif --}}
 
                 @if (session('success'))
                     <div id="success-alert"

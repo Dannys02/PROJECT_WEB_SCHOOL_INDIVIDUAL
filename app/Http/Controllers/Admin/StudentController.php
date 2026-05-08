@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Student;
 use App\Models\Major;
 use Illuminate\Http\Request;
-use Illuminate\Support\facades\Storage;
+use App\Http\Requests\StudentRequest;
+use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
@@ -30,17 +31,9 @@ class StudentController extends Controller
         return view('admin.students.create', ['majors' => $majors]);
     }
 
-    public function store(Request $request)
+    public function store(StudentRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'major_id' => 'required|exists:majors,id',
-            'nisn' => 'required|string|max:255|unique:students,nisn',
-            'gender' => 'required|in:Laki-laki,Perempuan',
-            'address' => 'required|string',
-            'student_picture' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'social_media' => 'nullable|string',
-        ]);
+        $validated = $request->validated();
 
         if ($request->hasFile('student_picture')) {
             $file = $request->file('student_picture');
@@ -64,17 +57,9 @@ class StudentController extends Controller
         return view('admin.students.edit', ['student' => $student, 'majors' => $majors]);
     }
 
-    public function update(Request $request, Student $student)
+    public function update(StudentRequest $request, Student $student)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'major_id' => 'required|exists:majors,id',
-            'nisn' => 'required|string|max:255|unique:students,nisn,' . $student->id,
-            'gender' => 'required|in:Laki-laki,Perempuan',
-            'address' => 'required|string',
-            'student_picture' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'social_media' => 'nullable|string',
-        ]);
+        $validated = $request->validated();
 
         if ($request->hasFile('student_picture')) {
             if ($student->student_picture) {

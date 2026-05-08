@@ -7,9 +7,11 @@
     <div class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
             <h2 class="text-gray-400 text-sm mb-2">Kelola Data Siswa</h2>
-            <p class="text-gray-300">Total Siswa: <span class="font-bold text-purple-400">{{ $students->count() ?? 0 }}</span></p>
+            <p class="text-gray-300">Total Siswa: <span class="font-bold text-purple-400">{{ $students->count() ?? 0 }}</span>
+            </p>
         </div>
-        <a href="{{ route('admin.students.create') }}" class="button-cosmic px-6 py-2 rounded-lg text-white font-semibold flex items-center gap-2">
+        <a href="{{ route('admin.students.create') }}"
+            class="button-cosmic px-6 py-2 rounded-lg text-white font-semibold flex items-center gap-2">
             <i class="fas fa-plus"></i> Tambah Siswa
         </a>
     </div>
@@ -18,13 +20,8 @@
     <div class="card-cosmic rounded-lg p-4 mb-6">
         <form method="GET" action="{{ route('admin.students.index') }}" class="flex flex-col md:flex-row gap-3">
             <div class="flex-1">
-                <input
-                    type="text"
-                    name="search"
-                    placeholder="Cari nama atau NISN siswa..."
-                    value="{{ request('search') }}"
-                    class="form-input-cosmic w-full px-4 py-2 rounded-lg"
-                >
+                <input type="text" name="search" placeholder="Cari nama atau NISN siswa..."
+                    value="{{ request('search') }}" class="form-input-cosmic w-full px-4 py-2 rounded-lg">
             </div>
             <button type="submit" class="button-cosmic px-6 py-2 rounded-lg text-white font-semibold">
                 <i class="fas fa-search"></i> Cari
@@ -52,32 +49,41 @@
                         <tr>
                             <td class="px-6 py-3 text-center">{{ $key + 1 }}</td>
                             <td class="px-3 py-3">
-                                @if($student->student_picture)
-                                    <img src="{{ asset('storage/students/' . $student->student_picture) }}" alt="Foto Siswa" class="aspect-square h-16 object-cover rounded-full">
+                                @if ($student->student_picture)
+                                    <img src="{{ asset('storage/students/' . $student->student_picture) }}" alt="Foto Siswa"
+                                        class="aspect-square h-16 object-cover rounded-full">
                                 @else
-                                    <div class="bg-gray-300 border-2 border-dashed rounded-xl w-16 h-16"></div>
+                                    <div
+                                        class="bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center  w-16 h-16">
+                                        <i class="fas fa-user text-white text-xl"></i>
+                                    </div>
                                 @endif
                             </td>
                             <td class="px-6 py-3 font-semibold text-white">{{ $student->name ?? 'N/A' }}</td>
                             <td class="px-6 py-3">{{ $student->nisn ?? 'N/A' }}</td>
                             <td class="px-6 py-3">
-                                <span class="inline-block px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-300 rounded text-xs">
+                                <span
+                                    class="inline-block px-3 py-1 {{ $student->gender === 'Laki-laki' ? 'bg-blue-500' : 'bg-pink-500' }} bg-opacity-20 text-purple-300 rounded text-xs">
                                     {{ $student->gender ?? 'N/A' }}
                                 </span>
                             </td>
                             <td class="px-6 py-3 text-sm">{{ substr($student->address ?? 'N/A', 0, 30) }}...</td>
                             <td class="px-6 py-3 text-center">
                                 <div class="flex items-center justify-center gap-2">
-                                    <a href="{{ route('admin.students.show', $student->id) }}" class="px-3 py-1 bg-blue-500 bg-opacity-20 text-blue-300 rounded hover:bg-opacity-40 transition text-sm">
+                                    <a href="{{ route('admin.students.show', $student->id) }}"
+                                        class="px-3 py-1 bg-blue-500 bg-opacity-20 text-blue-300 rounded hover:bg-opacity-40 transition text-sm">
                                         <i class="fas fa-eye"></i> Lihat
                                     </a>
-                                    <a href="{{ route('admin.students.edit', $student->id) }}" class="px-3 py-1 bg-yellow-500 bg-opacity-20 text-yellow-300 rounded hover:bg-opacity-40 transition text-sm">
+                                    <a href="{{ route('admin.students.edit', $student->id) }}"
+                                        class="px-3 py-1 bg-yellow-500 bg-opacity-20 text-yellow-300 rounded hover:bg-opacity-40 transition text-sm">
                                         <i class="fas fa-edit"></i> Edit
                                     </a>
-                                    <form method="POST" action="{{ route('admin.students.destroy', $student->id) }}" class="inline">
+                                    <form method="POST" action="{{ route('admin.students.destroy', $student->id) }}"
+                                        class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Yakin ingin menghapus?')" class="px-3 py-1 bg-red-500 bg-opacity-20 text-red-300 rounded hover:bg-opacity-40 transition text-sm">
+                                        <button type="submit" onclick="return confirm('Yakin ingin menghapus?')"
+                                            class="px-3 py-1 bg-red-500 bg-opacity-20 text-red-300 rounded hover:bg-opacity-40 transition text-sm">
                                             <i class="fas fa-trash"></i> Hapus
                                         </button>
                                     </form>
@@ -98,7 +104,7 @@
     </div>
 
     <!-- Pagination -->
-    @if($students->hasPages())
+    @if ($students->hasPages())
         <div class="mt-6 flex justify-center">
             {{ $students->links() }}
         </div>

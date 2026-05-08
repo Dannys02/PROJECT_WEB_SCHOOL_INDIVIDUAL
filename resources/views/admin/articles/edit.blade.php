@@ -21,7 +21,7 @@
                 <div>
                     <label for="title" class="block text-sm font-semibold text-purple-200 mb-2">Judul Artikel</label>
                     <input type="text" id="title" name="title" value="{{ old('title', $article->title ?? '') }}"
-                        placeholder="Masukkan judul artikel" class="form-input-cosmic w-full px-4 py-3 rounded-lg" required>
+                        placeholder="Masukkan judul artikel" class="form-input-cosmic w-full px-4 py-3 rounded-lg">
                     @error('title')
                         <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                     @enderror
@@ -61,7 +61,7 @@
                 <div>
                     <label for="article" class="block text-sm font-semibold text-purple-200 mb-2">Isi Artikel</label>
                     <textarea id="article" name="article" rows="10" placeholder="Tulis isi artikel di sini..."
-                        class="form-input-cosmic w-full px-4 py-3 rounded-lg" required>{{ old('article', $article->article ?? '') }}</textarea>
+                        class="form-input-cosmic w-full px-4 py-3 rounded-lg">{{ old('article', $article->article ?? '') }}</textarea>
                     @error('article')
                         <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                     @enderror

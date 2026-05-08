@@ -22,7 +22,7 @@
                     <div>
                         <label for="name" class="block text-sm font-semibold text-purple-200 mb-2">Nama Guru</label>
                         <input type="text" id="name" name="name" value="{{ old('name', $teacher->name ?? '') }}"
-                            placeholder="Masukkan nama guru" class="form-input-cosmic w-full px-4 py-3 rounded-lg" required>
+                            placeholder="Masukkan nama guru" class="form-input-cosmic w-full px-4 py-3 rounded-lg">
                         @error('name')
                             <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                         @enderror
@@ -50,7 +50,7 @@
                         <label for="nip" class="block text-sm font-semibold text-purple-200 mb-2">NIP</label>
                         <input type="text" id="nip" name="nip" value="{{ old('nip', $teacher->nip ?? '') }}"
                             placeholder="Nomor Induk Pegawai" class="form-input-cosmic w-full px-4 py-3 rounded-lg"
-                            required>
+                           >
                         @error('nip')
                             <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                         @enderror
@@ -60,7 +60,7 @@
                     <div>
                         <label for="gender" class="block text-sm font-semibold text-purple-200 mb-2">Jenis Kelamin</label>
                         <select id="gender" name="gender" class="form-input-cosmic w-full px-4 py-3 rounded-lg"
-                            required>
+                           >
                             <option class="text-black" value="">Pilih Jenis Kelamin</option>
                             <option class="text-black" value="Laki-laki" @selected(old('gender', $teacher->gender ?? '') == 'Laki-laki')>Laki-laki</option>
                             <option class="text-black" value="Perempuan" @selected(old('gender', $teacher->gender ?? '') == 'Perempuan')>Perempuan</option>
@@ -103,7 +103,7 @@
                 <div>
                     <label for="address" class="block text-sm font-semibold text-purple-200 mb-2">Alamat</label>
                     <textarea id="address" name="address" rows="4" placeholder="Masukkan alamat lengkap guru"
-                        class="form-input-cosmic w-full px-4 py-3 rounded-lg" required>{{ old('address', $teacher->address ?? '') }}</textarea>
+                        class="form-input-cosmic w-full px-4 py-3 rounded-lg">{{ old('address', $teacher->address ?? '') }}</textarea>
                     @error('address')
                         <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                     @enderror

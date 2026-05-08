@@ -26,7 +26,7 @@
                             value="{{ old('name') }}"
                             placeholder="Masukkan nama siswa"
                             class="form-input-cosmic w-full px-4 py-3 rounded-lg"
-                            required
+                           
                         >
                         @error('name')
                             <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
@@ -36,7 +36,7 @@
                     <!-- Jurusan -->
                     <div>
                         <label for="major_id" class="block text-sm font-semibold text-purple-200 mb-2">Jurusan</label>
-                        <select id="major_id" name="major_id" class="form-input-cosmic w-full px-4 py-3 rounded-lg" required>
+                        <select id="major_id" name="major_id" class="form-input-cosmic w-full px-4 py-3 rounded-lg">
                             <option class="text-black" value="">Pilih Jurusan</option>
                             @forelse($majors ?? [] as $major)
                                 <option class="text-black" value="{{ $major->id }}" @selected(old('major_id') == $major->id)>
@@ -53,7 +53,7 @@
                     <!-- Kelas -->
                     <div>
                         <label for="class" class="block text-sm font-semibold text-purple-200 mb-2">Kelas</label>
-                        <select id="class" name="class" class="form-input-cosmic w-full px-4 py-3 rounded-lg" required>
+                        <select id="class" name="class" class="form-input-cosmic w-full px-4 py-3 rounded-lg">
                             <option class="text-black" value="">Pilih Kelas</option>
                                 <option class="text-black" value="X">X</option>
                                 <option class="text-black" value="XI">XI</option>
@@ -74,7 +74,7 @@
                             value="{{ old('nisn') }}"
                             placeholder="Nomor Induk Siswa Nasional"
                             class="form-input-cosmic w-full px-4 py-3 rounded-lg"
-                            required
+                           
                         >
                         @error('nisn')
                             <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
@@ -84,7 +84,7 @@
                     <!-- Jenis Kelamin -->
                     <div>
                         <label for="gender" class="block text-sm font-semibold text-purple-200 mb-2">Jenis Kelamin</label>
-                        <select id="gender" name="gender" class="form-input-cosmic w-full px-4 py-3 rounded-lg" required>
+                        <select id="gender" name="gender" class="form-input-cosmic w-full px-4 py-3 rounded-lg">
                             <option class="text-black" value="">Pilih Jenis Kelamin</option>
                             <option class="text-black" value="Laki-laki" @selected(old('gender') == 'Laki-laki')>Laki-laki</option>
                             <option class="text-black" value="Perempuan" @selected(old('gender') == 'Perempuan')>Perempuan</option>
@@ -116,7 +116,7 @@
                         rows="4"
                         placeholder="Masukkan alamat lengkap siswa"
                         class="form-input-cosmic w-full px-4 py-3 rounded-lg"
-                        required
+                       
                     >{{ old('address') }}</textarea>
                     @error('address')
                         <p class="text-red-400 text-sm mt-1">{{ $message }}</p>

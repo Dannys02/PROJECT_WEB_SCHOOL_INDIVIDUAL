@@ -25,7 +25,6 @@
                         value="{{ old('position') }}"
                         placeholder="Contoh: Kepala Sekolah"
                         class="form-input-cosmic w-full px-4 py-3 rounded-lg"
-                        required
                     >
                     @error('position')
                         <p class="text-red-400 text-sm mt-1">{{ $message }}</p>

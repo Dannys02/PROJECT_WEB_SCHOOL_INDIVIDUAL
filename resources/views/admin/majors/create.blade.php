@@ -21,7 +21,7 @@
                     <label for="major_name" class="block text-sm font-semibold text-purple-200 mb-2">Nama Jurusan</label>
                     <input type="text" id="major_name" name="major_name" value="{{ old('major_name') }}"
                         placeholder="Contoh: Teknik Informatika" class="form-input-cosmic w-full px-4 py-3 rounded-lg"
-                        required>
+                       >
                     @error('major_name')
                         <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                     @enderror
@@ -42,7 +42,7 @@
                     <label for="major_about" class="block text-sm font-semibold text-purple-200 mb-2">Tentang
                         Jurusan</label>
                     <textarea id="major_about" name="major_about" rows="6" placeholder="Deskripsi lengkap jurusan"
-                        class="form-input-cosmic w-full px-4 py-3 rounded-lg" required>{{ old('major_about') }}</textarea>
+                        class="form-input-cosmic w-full px-4 py-3 rounded-lg">{{ old('major_about') }}</textarea>
                     @error('major_about')
                         <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                     @enderror

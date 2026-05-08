@@ -22,7 +22,7 @@
                 <label for="school_name" class="block text-sm font-semibold text-purple-200 mb-2">Nama Sekolah</label>
                 <input type="text" id="school_name" name="school_name"
                     value="{{ old('school_name', $aboutSchool->school_name ?? '') }}" placeholder="Masukkan nama sekolah"
-                    class="form-input-cosmic w-full px-4 py-3 rounded-lg" required>
+                    class="form-input-cosmic w-full px-4 py-3 rounded-lg">
                 @error('school_name')
                     <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                 @enderror
@@ -45,7 +45,7 @@
                     Sekolah</label>
                 <textarea id="about_school" name="about_school" rows="8"
                     placeholder="Deskripsi lengkap tentang sekolah, visi, misi, dll"
-                    class="form-input-cosmic w-full px-4 py-3 rounded-lg" required>{{ old('about_school', $aboutSchool->about_school ?? '') }}</textarea>
+                    class="form-input-cosmic w-full px-4 py-3 rounded-lg">{{ old('about_school', $aboutSchool->about_school ?? '') }}</textarea>
                 @error('about_school')
                     <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                 @enderror

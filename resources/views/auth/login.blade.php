@@ -111,7 +111,6 @@
                             value="{{ old('email') }}"
                             placeholder="nama@email.com"
                             class="form-input input-focus w-full px-4 py-3 text-white placeholder-purple-300 placeholder-opacity-50 rounded-lg focus:outline-none"
-                            required
                         >
                         @error('email')
                             <p class="mt-1 text-sm text-red-400">{{ $message }}</p>
@@ -127,7 +126,6 @@
                             name="password"
                             placeholder="Masukkan password Anda"
                             class="form-input input-focus w-full px-4 py-3 text-white placeholder-purple-300 placeholder-opacity-50 rounded-lg focus:outline-none"
-                            required
                         >
                         @error('password')
                             <p class="mt-1 text-sm text-red-400">{{ $message }}</p>
@@ -136,7 +134,7 @@
 
                     <!-- Remember Me -->
                     <div class="flex items-center justify-between">
-                       
+
                         <a href="{{ route('register') }}" class="text-sm text-purple-400 hover:text-purple-300 transition">
                             Lupa password?
                         </a>

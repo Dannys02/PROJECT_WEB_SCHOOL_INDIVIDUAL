@@ -111,7 +111,6 @@
                             value="{{ old('name') }}"
                             placeholder="Masukkan nama lengkap Anda"
                             class="form-input input-focus w-full px-4 py-3 text-white placeholder-purple-300 placeholder-opacity-50 rounded-lg focus:outline-none"
-                            required
                         >
                         @error('name')
                             <p class="mt-1 text-sm text-red-400">{{ $message }}</p>
@@ -128,7 +127,6 @@
                             value="{{ old('email') }}"
                             placeholder="nama@email.com"
                             class="form-input input-focus w-full px-4 py-3 text-white placeholder-purple-300 placeholder-opacity-50 rounded-lg focus:outline-none"
-                            required
                         >
                         @error('email')
                             <p class="mt-1 text-sm text-red-400">{{ $message }}</p>
@@ -144,7 +142,6 @@
                             name="password"
                             placeholder="Minimal 8 karakter"
                             class="form-input input-focus w-full px-4 py-3 text-white placeholder-purple-300 placeholder-opacity-50 rounded-lg focus:outline-none"
-                            required
                         >
                         @error('password')
                             <p class="mt-1 text-sm text-red-400">{{ $message }}</p>
@@ -160,7 +157,6 @@
                             name="password_confirmation"
                             placeholder="Ulangi password Anda"
                             class="form-input input-focus w-full px-4 py-3 text-white placeholder-purple-300 placeholder-opacity-50 rounded-lg focus:outline-none"
-                            required
                         >
                         @error('password_confirmation')
                             <p class="mt-1 text-sm text-red-400">{{ $message }}</p>
