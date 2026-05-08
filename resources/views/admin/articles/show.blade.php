@@ -28,11 +28,11 @@
             <div class="p-8">
                 <!-- Judul dan Meta -->
                 <div class="mb-6 pb-6 border-b border-purple-500 border-opacity-30">
-                    <h1 class="text-4xl font-bold text-white mb-3">{{ $article->title ?? 'N/A' }}</h1>
+                    <h1 class="text-4xl font-bold text-white mb-3">{{ $article->title ?? 'Tidak ada' }}</h1>
                     <div class="flex flex-wrap gap-4 text-sm text-gray-400">
                         <span class="flex items-center gap-2">
                             <i class="fas fa-calendar"></i>
-                            {{ $article->created_at?->format('d M Y') ?? 'N/A' }}
+                            {{ $article->created_at?->format('d M Y') ?? 'Tidak ada' }}
                         </span>
                         <span class="flex items-center gap-2">
                             <i class="fas fa-user"></i>
@@ -41,7 +41,7 @@
                         @if ($article->jurusan)
                             <span class="flex items-center gap-2">
                                 <i class="fas fa-book"></i>
-                                {{ $article->major->major_name ?? 'N/A' }}
+                                {{ $article->major->major_name ?? 'Tidak ada' }}
                             </span>
                         @endif
                     </div>
@@ -49,8 +49,8 @@
 
                 <!-- Isi Artikel -->
                 <div class="prose prose-invert max-w-none mb-8">
-                    <div class="text-gray-300 leading-relaxed whitespace-pre-wrap">
-                        {{ $article->article ?? 'N/A' }}
+                    <div class="text-gray-300 leading-relaxed">
+                        {{ $article->article ?? 'Tidak ada' }}
                     </div>
                 </div>
 
@@ -61,11 +61,11 @@
                         <div class="stat-card">
                             <p class="text-gray-400 text-xs mb-1">Terakhir Diperbarui</p>
                             <p class="text-white font-semibold text-sm">
-                                {{ $article->updated_at?->format('d M Y') ?? 'N/A' }}</p>
+                                {{ $article->updated_at?->format('d M Y') ?? 'Tidak ada' }}</p>
                         </div>
                         <div class="stat-card">
                             <p class="text-gray-400 text-xs mb-1">ID Artikel</p>
-                            <p class="text-white font-semibold text-sm">{{ $article->id ?? 'N/A' }}</p>
+                            <p class="text-white font-semibold text-sm">{{ $article->id ?? 'Tidak ada' }}</p>
                         </div>
                         <div class="stat-card">
                             <p class="text-gray-400 text-xs mb-1">Status</p>

@@ -13,7 +13,7 @@
         <div class="card-cosmic rounded-lg p-8">
             <h2 class="text-2xl font-bold text-white mb-6">Edit Artikel: {{ substr($article->title ?? 'N/A', 0, 40) }}</h2>
 
-            <form method="POST" action="{{ route('admin.articles.update', $article->id) }}" class="space-y-6">
+            <form method="POST" action="{{ route('admin.articles.update', $article->id) }}" enctype="multipart/form-data" class="space-y-6">
                 @csrf
                 @method('PUT')
 

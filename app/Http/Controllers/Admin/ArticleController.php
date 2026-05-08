@@ -36,6 +36,18 @@ class ArticleController extends Controller
             'article' => 'required',
             'image' => 'nullable|image|mimes:png,jpg,jpeg,webp',
             'major_id' => 'required|exists:majors,id',
+        ], [
+            'title.required' => 'Judul artikel wajib diisi.',
+            'title.string' => 'Judul artikel harus berupa teks.',
+            'title.max' => 'Judul artikel maksimal 255 karakter.',
+
+            'article.required' => 'Isi artikel wajib diisi.',
+
+            'image.image' => 'File yang diupload harus berupa gambar.',
+            'image.mimes' => 'Format gambar harus png, jpg, jpeg, atau webp.',
+
+            'major_id.required' => 'Jurusan wajib dipilih.',
+            'major_id.exists' => 'Jurusan yang dipilih tidak valid.',
         ]);
 
         if ($request->hasFile('image')) {
@@ -68,6 +80,18 @@ class ArticleController extends Controller
             'article' => 'required',
             'image' => 'nullable|image|mimes:png,jpg,jpeg,webp',
             'major_id' => 'required|exists:majors,id',
+        ], [
+            'title.required' => 'Judul artikel wajib diisi.',
+            'title.string' => 'Judul artikel harus berupa teks.',
+            'title.max' => 'Judul artikel maksimal 255 karakter.',
+
+            'article.required' => 'Isi artikel wajib diisi.',
+
+            'image.image' => 'File yang diupload harus berupa gambar.',
+            'image.mimes' => 'Format gambar harus png, jpg, jpeg, atau webp.',
+
+            'major_id.required' => 'Jurusan wajib dipilih.',
+            'major_id.exists' => 'Jurusan yang dipilih tidak valid.',
         ]);
 
         if ($request->hasFile('image')) {
