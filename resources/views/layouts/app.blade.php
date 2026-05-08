@@ -217,8 +217,19 @@
             <div class="p-6 border-b border-purple-500 border-opacity-20">
                 <div class="flex items-center justify-between">
                     <div class="nav-brand flex items-center gap-2">
-                        <i class="fas fa-graduation-cap text-2xl"></i>
-                        <span class="uppercase">smpn 4 genteng</span>
+                        @if ($globalSchool && $globalSchool->logo_school)
+                            <img src="{{ asset('storage/logos/' . $globalSchool->logo_school) }}"
+                                alt="{{ $globalSchool->school_name }}"
+                                class="w-12 h-12 rounded-full object-cover border-2 border-purple-500">
+                        @else
+                            <div
+                                class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center">
+                                <i class="fas fa-school text-white"></i>
+                            </div>
+                        @endif
+
+                        <span
+                            class="uppercase text-xs">{{ $globalSchool->school_name ?? 'Nama Sekolah' }}</span>
                     </div>
                     <button class="md:hidden text-gray-300 hover:text-purple-400" onclick="toggleSidebar()">
                         <i class="fas fa-times text-xl"></i>

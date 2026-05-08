@@ -79,16 +79,16 @@
                         <p class="text-gray-400 text-xs mb-1">Diperbarui</p>
                         <p class="text-white font-semibold text-sm">{{ $aboutSchool->updated_at?->format('d M Y') ?? 'N/A' }}</p>
                     </div>
-                    <div class="stat-card">
+                    {{-- <div class="stat-card">
                         <p class="text-gray-400 text-xs mb-1">Status</p>
                         <p class="text-green-400 font-semibold text-sm">
                             <i class="fas fa-check-circle"></i> Aktif
                         </p>
-                    </div>
-                    <div class="stat-card">
+                    </div> --}}
+                    {{-- <div class="stat-card">
                         <p class="text-gray-400 text-xs mb-1">ID</p>
                         <p class="text-white font-semibold text-sm">{{ $aboutSchool->id ?? 'N/A' }}</p>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
