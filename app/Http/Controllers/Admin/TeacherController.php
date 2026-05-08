@@ -7,6 +7,7 @@ use App\Models\Teacher;
 use App\Models\Position;
 use App\Models\Major;
 use Illuminate\Http\Request;
+use App\Http\Requests\TeacherRequest;
 use Illuminate\Support\Facades\Storage;
 
 class TeacherController extends Controller
@@ -32,48 +33,9 @@ class TeacherController extends Controller
         return view('admin.teachers.create', ['positions' => $positions, 'majors' => $majors]);
     }
 
-    public function store(Request $request)
+    public function store(TeacherRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'major_id' => 'required|exists:majors,id',
-            'nip' => 'required|string|max:255|unique:teachers,nip',
-            'gender' => 'required|in:Laki-laki,Perempuan',
-            'address' => 'required|string',
-            'teacher_picture' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'position_id' => 'required|exists:positions,id',
-            'lessons' => 'nullable|string',
-            'social_media' => 'nullable|string',
-        ], [
-            'name.required' => 'Nama guru wajib diisi.',
-            'name.string' => 'Nama guru harus berupa teks.',
-            'name.max' => 'Nama guru maksimal 255 karakter.',
-
-            'major_id.required' => 'Jurusan wajib dipilih.',
-            'major_id.exists' => 'Jurusan yang dipilih tidak valid.',
-
-            'nip.required' => 'NIP wajib diisi.',
-            'nip.string' => 'NIP harus berupa teks.',
-            'nip.max' => 'NIP maksimal 255 karakter.',
-            'nip.unique' => 'NIP sudah terdaftar.',
-
-            'gender.required' => 'Jenis kelamin wajib dipilih.',
-            'gender.in' => 'Jenis kelamin harus Laki-laki atau Perempuan.',
-
-            'address.required' => 'Alamat wajib diisi.',
-            'address.string' => 'Alamat harus berupa teks.',
-
-            'teacher_picture.image' => 'File harus berupa gambar.',
-            'teacher_picture.mimes' => 'Format gambar harus jpeg, png, jpg, atau webp.',
-            'teacher_picture.max' => 'Ukuran gambar maksimal 2 MB.',
-
-            'position_id.required' => 'Jabatan wajib dipilih.',
-            'position_id.exists' => 'Jabatan yang dipilih tidak valid.',
-
-            'lessons.string' => 'Mata pelajaran harus berupa teks.',
-
-            'social_media.string' => 'Media sosial harus berupa teks.',
-        ]);
+        $validated = $request->validated();
 
         if ($request->hasFile('teacher_picture')) {
             $file = $request->file('teacher_picture');
@@ -100,19 +62,9 @@ class TeacherController extends Controller
         return view('admin.teachers.edit', ['teacher' => $teacher, 'positions' => $positions, 'majors' => $majors]);
     }
 
-    public function update(Request $request, Teacher $teacher)
+    public function update(TeacherRequest $request, Teacher $teacher)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'major_id' => 'required|exists:majors,id',
-            'nip' => 'required|string|max:255|unique:teachers,nip,' . $teacher->id,
-            'gender' => 'required|in:Laki-laki,Perempuan',
-            'address' => 'required|string',
-            'teacher_picture' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'position_id' => 'required|exists:positions,id',
-            'lessons' => 'nullable|string',
-            'social_media' => 'nullable|string',
-        ]);
+        $validated = $request->validated();
 
         if ($request->hasFile('teacher_picture')) {
             if ($teacher->teacher_picture) {

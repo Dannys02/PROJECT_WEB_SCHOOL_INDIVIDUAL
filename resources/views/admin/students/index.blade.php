@@ -20,7 +20,7 @@
     <div class="card-cosmic rounded-lg p-4 mb-6">
         <form method="GET" action="{{ route('admin.students.index') }}" class="flex flex-col md:flex-row gap-3">
             <div class="flex-1">
-                <input type="text" name="search" placeholder="Cari nama atau NISN siswa..."
+                <input type="search" name="search" placeholder="Cari nama atau NISN siswa..."
                     value="{{ request('search') }}" class="form-input-cosmic w-full px-4 py-2 rounded-lg">
             </div>
             <button type="submit" class="button-cosmic px-6 py-2 rounded-lg text-white font-semibold">
@@ -59,15 +59,15 @@
                                     </div>
                                 @endif
                             </td>
-                            <td class="px-6 py-3 font-semibold text-white">{{ $student->name ?? 'N/A' }}</td>
-                            <td class="px-6 py-3">{{ $student->nisn ?? 'N/A' }}</td>
+                            <td class="px-6 py-3 font-semibold text-white">{{ $student->name ?? 'Tidak ada' }}</td>
+                            <td class="px-6 py-3">{{ $student->nisn ?? 'Tidak ada' }}</td>
                             <td class="px-6 py-3">
                                 <span
                                     class="inline-block px-3 py-1 {{ $student->gender === 'Laki-laki' ? 'bg-blue-500' : 'bg-pink-500' }} bg-opacity-20 text-purple-300 rounded text-xs">
-                                    {{ $student->gender ?? 'N/A' }}
+                                    {{ $student->gender ?? 'Tidak ada' }}
                                 </span>
                             </td>
-                            <td class="px-6 py-3 text-sm">{{ substr($student->address ?? 'N/A', 0, 30) }}...</td>
+                            <td class="px-6 py-3 text-sm">{{ substr($student->address ?? 'Tidak ada', 0, 30) }}...</td>
                             <td class="px-6 py-3 text-center">
                                 <div class="flex items-center justify-center gap-2">
                                     <a href="{{ route('admin.students.show', $student->id) }}"

@@ -11,7 +11,7 @@
         </a>
 
         <div class="card-cosmic rounded-lg p-8">
-            <h2 class="text-2xl font-bold text-white mb-6">Edit Siswa: {{ $student->name ?? 'N/A' }}</h2>
+            <h2 class="text-2xl font-bold text-white mb-6">Edit Siswa: {{ $student->name ?? '' }}</h2>
 
             <form method="POST" action="{{ route('admin.students.update', $student->id) }}" enctype="multipart/form-data"
                 class="space-y-6">

@@ -11,7 +11,7 @@
         </a>
 
         <div class="card-cosmic rounded-lg p-8">
-            <h2 class="text-2xl font-bold text-white mb-6">Edit Guru: {{ $teacher->name ?? 'N/A' }}</h2>
+            <h2 class="text-2xl font-bold text-white mb-6">Edit Guru: {{ $teacher->name ?? '' }}</h2>
 
             <form method="POST" action="{{ route('admin.teachers.update', $teacher->id) }}" enctype="multipart/form-data" class="space-y-6">
                 @csrf
@@ -77,7 +77,7 @@
                             <option class="text-black" value="">Pilih Jabatan</option>
                             @forelse($positions ?? [] as $position)
                                 <option class="text-black" value="{{ $position->id }}" @selected(old('position_id', $teacher->position_id ?? '') == $position->id)>
-                                    {{ $position->position ?? 'N/A' }}
+                                    {{ $position->position ?? '' }}
                                 </option>
                             @empty
                             @endforelse
@@ -112,7 +112,7 @@
                 <!-- Mata Pelajaran -->
                 <div>
                     <label for="lessons" class="block text-sm font-semibold text-purple-200 mb-2">Mata Pelajaran</label>
-                    <input type="text" id="lessons" name="lessons" value="{{ old('lessons', $teacher->lessons ?? 'N/A') }}"
+                    <input type="text" id="lessons" name="lessons" value="{{ old('lessons', $teacher->lessons ?? '') }}"
                         placeholder="Masukkan mata pelajaran" class="form-input-cosmic w-full px-4 py-3 rounded-lg">
                     @error('lessons')
                         <p class="text-red-400 text-sm mt-1">{{ $message }}</p>

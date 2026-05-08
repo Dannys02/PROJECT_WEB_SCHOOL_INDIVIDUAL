@@ -29,8 +29,8 @@
                             @endif
                         </div>
                         <div>
-                            <h2 class="text-3xl font-bold text-white mb-1">{{ $student->name ?? 'N/A' }}</h2>
-                            <p class="text-purple-100">NISN: {{ $student->nisn ?? 'N/A' }}</p>
+                            <h2 class="text-3xl font-bold text-white mb-1">{{ $student->name ?? 'Tidak ada' }}</h2>
+                            <p class="text-purple-100">NISN: {{ $student->nisn ?? 'Tidak ada' }}</p>
                         </div>
                     </div>
                     <div class="flex gap-2">
@@ -57,29 +57,30 @@
                     <div class="space-y-6">
                         <div>
                             <p class="text-gray-400 text-sm mb-1">Nama Lengkap</p>
-                            <p class="text-white font-semibold text-lg">{{ $student->name ?? 'N/A' }}</p>
+                            <p class="text-white font-semibold text-lg">{{ $student->name ?? 'Tidak ada' }}</p>
                         </div>
 
                         <div>
                             <p class="text-gray-400 text-sm mb-1">Jurusan</p>
-                            <p class="text-white font-semibold text-lg">{{ $student->major->major_name ?? 'N/A' }}</p>
+                            <p class="text-white font-semibold text-lg">{{ $student->major->major_name ?? 'Tidak ada' }}</p>
                         </div>
 
                         <div>
                             <p class="text-gray-400 text-sm mb-1">Kelas</p>
-                            <p class="text-white font-semibold text-lg">{{ $student->class ?? 'N/A' }}</p>
+                            <p class="text-white font-semibold text-lg">{{ $student->class ?? 'Tidak ada' }}</p>
                         </div>
 
                         <div>
                             <p class="text-gray-400 text-sm mb-1">Nomor Induk Siswa Nasional (NISN)</p>
-                            <p class="text-white font-semibold text-lg">{{ $student->nisn ?? 'N/A' }}</p>
+                            <p class="text-white font-semibold text-lg">{{ $student->nisn ?? 'Tidak ada' }}</p>
                         </div>
 
                         <div>
                             <p class="text-gray-400 text-sm mb-1">Jenis Kelamin</p>
                             <p class="text-white font-semibold text-lg">
-                                <span class="inline-block px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-300 rounded">
-                                    {{ $student->gender ?? 'N/A' }}
+                                <span
+                                    class="inline-block px-3 py-1 {{ $student->gender === 'Laki-laki' ? 'bg-blue-500' : 'bg-pink-500' }} bg-opacity-20 text-purple-300 rounded">
+                                    {{ $student->gender ?? 'Tidak ada' }}
                                 </span>
                             </p>
                         </div>
@@ -103,18 +104,18 @@
                 <!-- Alamat -->
                 <div class="border-t border-purple-500 border-opacity-30 pt-6">
                     <p class="text-gray-400 text-sm mb-2">Alamat</p>
-                    <p class="text-white text-base leading-relaxed">{{ $student->address ?? 'N/A' }}</p>
+                    <p class="text-white text-base leading-relaxed">{{ $student->address ?? 'Tidak ada' }}</p>
                 </div>
 
                 <!-- Info Tambahan -->
                 <div class="border-t border-purple-500 border-opacity-30 pt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div class="stat-card">
                         <p class="text-gray-400 text-xs mb-1">Dibuat Pada</p>
-                        <p class="text-white font-semibold">{{ $student->created_at?->format('d M Y') ?? 'N/A' }}</p>
+                        <p class="text-white font-semibold">{{ $student->created_at?->format('d M Y') ?? 'Tidak ada' }}</p>
                     </div>
                     <div class="stat-card">
                         <p class="text-gray-400 text-xs mb-1">Diperbarui</p>
-                        <p class="text-white font-semibold">{{ $student->updated_at?->format('d M Y') ?? 'N/A' }}</p>
+                        <p class="text-white font-semibold">{{ $student->updated_at?->format('d M Y') ?? 'Tidak ada' }}</p>
                     </div>
                     {{-- <div class="stat-card">
                         <p class="text-gray-400 text-xs mb-1">Status</p>
@@ -124,7 +125,7 @@
                     </div> --}}
                     <div class="stat-card">
                         <p class="text-gray-400 text-xs mb-1">ID Siswa</p>
-                        <p class="text-white font-semibold text-sm">{{ $student->id ?? 'N/A' }}</p>
+                        <p class="text-white font-semibold text-sm">{{ $student->id ?? 'Tidak ada' }}</p>
                     </div>
                 </div>
             </div>

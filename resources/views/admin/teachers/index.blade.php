@@ -7,9 +7,11 @@
     <div class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
             <h2 class="text-gray-400 text-sm mb-2">Kelola Data Guru</h2>
-            <p class="text-gray-300">Total Guru: <span class="font-bold text-purple-400">{{ $teachers->count() ?? 0 }}</span></p>
+            <p class="text-gray-300">Total Guru: <span class="font-bold text-purple-400">{{ $teachers->count() ?? 0 }}</span>
+            </p>
         </div>
-        <a href="{{ route('admin.teachers.create') }}" class="button-cosmic px-6 py-2 rounded-lg text-white font-semibold flex items-center gap-2">
+        <a href="{{ route('admin.teachers.create') }}"
+            class="button-cosmic px-6 py-2 rounded-lg text-white font-semibold flex items-center gap-2">
             <i class="fas fa-plus"></i> Tambah Guru
         </a>
     </div>
@@ -18,13 +20,8 @@
     <div class="card-cosmic rounded-lg p-4 mb-6">
         <form method="GET" action="{{ route('admin.teachers.index') }}" class="flex flex-col md:flex-row gap-3">
             <div class="flex-1">
-                <input
-                    type="text"
-                    name="search"
-                    placeholder="Cari nama atau NIP guru..."
-                    value="{{ request('search') }}"
-                    class="form-input-cosmic w-full px-4 py-2 rounded-lg"
-                >
+                <input type="search" name="search" placeholder="Cari nama atau NIP guru..."
+                    value="{{ request('search') }}" class="form-input-cosmic w-full px-4 py-2 rounded-lg">
             </div>
             <button type="submit" class="button-cosmic px-6 py-2 rounded-lg text-white font-semibold">
                 <i class="fas fa-search"></i> Cari
@@ -53,11 +50,13 @@
                         <tr>
                             <td class="px-6 py-3 text-center">{{ $key + 1 }}</td>
                             <td class="px-2 py-3">
-                                @if($teacher->teacher_picture)
-                                    <img src="{{ asset('storage/teachers/' . $teacher->teacher_picture) }}" alt="Foto Guru" class="aspect-square h-16 object-cover rounded-full">
+                                @if ($teacher->teacher_picture)
+                                    <img src="{{ asset('storage/teachers/' . $teacher->teacher_picture) }}" alt="Foto Guru"
+                                        class="aspect-square h-16 object-cover rounded-full">
                                 @else
-                                    <div class="bg-gray-300 border-2 text-2xl text-black font-bold border-dashed rounded-full w-16 h-16 flex items-center justify-center">
-                                        {{ substr($teacher->name ?? 'N/A', 0, 1) }}
+                                    <div
+                                        class="bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center  w-16 h-16">
+                                        <i class="fas fa-user text-white text-xl"></i>
                                     </div>
                                 @endif
                             </td>
@@ -65,23 +64,28 @@
                             <td class="px-6 py-3">{{ $teacher->major->major_name ?? 'N/A' }}</td>
                             <td class="px-6 py-3">{{ $teacher->nip ?? 'N/A' }}</td>
                             <td class="px-6 py-3">
-                                <span class="inline-block px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-300 rounded text-xs">
+                                <span
+                                    class="inline-block px-3 py-1 {{ $teacher->gender === 'Laki-laki' ? 'bg-blue-500' : 'bg-pink-500' }} bg-opacity-20 text-purple-300 rounded text-xs">
                                     {{ $teacher->gender ?? 'N/A' }}
                                 </span>
                             </td>
                             <td class="px-6 py-3 text-sm">{{ $teacher->position->position ?? 'N/A' }}</td>
                             <td class="px-6 py-3 text-center">
                                 <div class="flex items-center justify-center gap-2">
-                                    <a href="{{ route('admin.teachers.show', $teacher->id) }}" class="px-3 py-1 bg-blue-500 bg-opacity-20 text-blue-300 rounded hover:bg-opacity-40 transition text-sm">
+                                    <a href="{{ route('admin.teachers.show', $teacher->id) }}"
+                                        class="px-3 py-1 bg-blue-500 bg-opacity-20 text-blue-300 rounded hover:bg-opacity-40 transition text-sm">
                                         <i class="fas fa-eye"></i> Lihat
                                     </a>
-                                    <a href="{{ route('admin.teachers.edit', $teacher->id) }}" class="px-3 py-1 bg-yellow-500 bg-opacity-20 text-yellow-300 rounded hover:bg-opacity-40 transition text-sm">
+                                    <a href="{{ route('admin.teachers.edit', $teacher->id) }}"
+                                        class="px-3 py-1 bg-yellow-500 bg-opacity-20 text-yellow-300 rounded hover:bg-opacity-40 transition text-sm">
                                         <i class="fas fa-edit"></i> Edit
                                     </a>
-                                    <form method="POST" action="{{ route('admin.teachers.destroy', $teacher->id) }}" class="inline">
+                                    <form method="POST" action="{{ route('admin.teachers.destroy', $teacher->id) }}"
+                                        class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Yakin ingin menghapus?')" class="px-3 py-1 bg-red-500 bg-opacity-20 text-red-300 rounded hover:bg-opacity-40 transition text-sm">
+                                        <button type="submit" onclick="return confirm('Yakin ingin menghapus?')"
+                                            class="px-3 py-1 bg-red-500 bg-opacity-20 text-red-300 rounded hover:bg-opacity-40 transition text-sm">
                                             <i class="fas fa-trash"></i> Hapus
                                         </button>
                                     </form>
@@ -102,7 +106,7 @@
     </div>
 
     <!-- Pagination -->
-    @if($teachers->hasPages())
+    @if ($teachers->hasPages())
         <div class="mt-6 flex justify-center">
             {{ $teachers->links() }}
         </div>
