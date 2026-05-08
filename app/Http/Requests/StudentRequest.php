@@ -27,7 +27,7 @@ class StudentRequest extends FormRequest
             'name' => 'required|string|max:255',
             'major_id' => 'required|exists:majors,id',
             'class' => 'required|in:X,XI,XII',
-            'nisn' => 'required|string|max:255|unique:students,nisn,' . $this->student->id,
+            'nisn' => 'required|string|max:255|unique:students,nisn,' . $this->student?->id,
             'gender' => 'required|in:Laki-laki,Perempuan',
             'address' => 'required|string',
             'student_picture' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
