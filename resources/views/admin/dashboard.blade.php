@@ -4,8 +4,23 @@
 @section('page_title', 'Dashboard')
 
 @section('content')
+    <!-- Welcome Card -->
+    <div class="card-cosmic rounded-lg p-6  mb-8">
+        <div class="flex items-center justify-between">
+            <div>
+                <h2 class="text-2xl font-bold text-white mb-2">Selamat Datang, {{ Auth::user()->name ?? 'Admin' }}!
+                    👋</h2>
+                <p class="text-gray-400">Kelola data sekolah Anda dengan mudah dan efisien melalui dashboard yang
+                    intuitif.</p>
+            </div>
+            <div class="hidden lg:block text-6xl opacity-20">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+        </div>
+    </div>
+
     <!-- Statistics Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
         <!-- Total Siswa -->
         <div class="stat-card">
             <div class="flex items-center justify-between">
@@ -72,24 +87,10 @@
     </div>
 
     <!-- Quick Access & Recent Activities -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <!-- Welcome Card -->
-        <div class="card-cosmic rounded-lg p-6">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h2 class="text-2xl font-bold text-white mb-2">Selamat Datang, {{ Auth::user()->name ?? 'Admin' }}!
-                        👋</h2>
-                    <p class="text-gray-400">Kelola data sekolah Anda dengan mudah dan efisien melalui dashboard yang
-                        intuitif.</p>
-                </div>
-                <div class="hidden lg:block text-6xl opacity-20">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-            </div>
-        </div>
+    <div class="w-full">
 
         <!-- Quick Actions -->
-        <div class="lg:col-span-2">
+        <div>
             <div class="card-cosmic rounded-lg p-6 mb-6">
                 <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
                     <i class="fas fa-bolt icon-cosmic"></i>
@@ -133,7 +134,6 @@
                     </a>
                 </div>
             </div>
-
 
         </div>
 

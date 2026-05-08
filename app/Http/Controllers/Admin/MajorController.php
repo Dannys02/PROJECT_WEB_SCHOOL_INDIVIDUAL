@@ -40,6 +40,18 @@ class MajorController extends Controller
             // 'class' => 'required|in:X,XI,XII',
             // 'student_id' => 'required|exists:students,id',
             // 'teacher_id' => 'required|exists:teachers,id',
+        ], [
+            'major_name.required' => 'Nama jurusan wajib diisi.',
+            'major_name.string' => 'Nama jurusan harus berupa teks.',
+            'major_name.max' => 'Nama jurusan maksimal 255 karakter.',
+            'major_name.unique' => 'Nama jurusan sudah digunakan.',
+
+            'major_logo.image' => 'Logo jurusan harus berupa gambar.',
+            'major_logo.mimes' => 'Format logo harus jpeg, png, jpg, atau gif.',
+            'major_logo.max' => 'Ukuran logo maksimal 2 MB.',
+
+            'major_about.required' => 'Deskripsi jurusan wajib diisi.',
+            'major_about.string' => 'Deskripsi jurusan harus berupa teks.',
         ]);
 
         if ($request->hasFile('major_logo')) {
@@ -72,6 +84,18 @@ class MajorController extends Controller
             // 'class' => 'required|in:X,XI,XII',
             // 'student_id' => 'required|exists:students,id',
             // 'teacher_id' => 'required|exists:teachers,id',
+        ], [
+            'major_name.required' => 'Nama jurusan wajib diisi.',
+            'major_name.string' => 'Nama jurusan harus berupa teks.',
+            'major_name.max' => 'Nama jurusan maksimal 255 karakter.',
+            'major_name.unique' => 'Nama jurusan sudah digunakan.',
+
+            'major_logo.image' => 'Logo jurusan harus berupa gambar.',
+            'major_logo.mimes' => 'Format logo harus jpeg, png, jpg, atau gif.',
+            'major_logo.max' => 'Ukuran logo maksimal 2 MB.',
+
+            'major_about.required' => 'Deskripsi jurusan wajib diisi.',
+            'major_about.string' => 'Deskripsi jurusan harus berupa teks.',
         ]);
 
         if ($request->hasFile('major_logo')) {
