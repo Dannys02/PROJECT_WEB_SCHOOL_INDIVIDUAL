@@ -7,7 +7,7 @@ use App\Models\Position;
 use Illuminate\Http\Request;
 
 class PositionController extends Controller
-{ 
+{
     public function index(Request $request)
     {
         $query = Position::query();
@@ -28,9 +28,17 @@ class PositionController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'position' => 'required|string|max:255|unique:positions',
-        ]);
+        $validated = $request->validate(
+            [
+                'position' => 'required|string|max:255|unique:positions',
+            ],
+            [
+                'position.required' => 'Nama jabatan wajib diisi.',
+                'position.string' => 'Nama jabatan harus berupa teks.',
+                'position.max' => 'Nama jabatan maksimal 255 karakter.',
+                'position.unique' => 'Nama jabatan sudah digunakan.',
+            ]
+        );
 
         Position::create($validated);
         return redirect()->route('admin.positions.index')->with('success', 'Jabatan berhasil ditambahkan');
@@ -48,10 +56,17 @@ class PositionController extends Controller
 
     public function update(Request $request, Position $position)
     {
-        $validated = $request->validate([
-            'nama_jabatan' => 'required|string|max:255|unique:positions,nama_jabatan,' . $position->id,
-            'tentang_jabatan' => 'required|string',
-        ]);
+        $validated = $request->validate(
+            [
+                'position' => 'required|string|max:255|unique:positions,position,' . $position->id,
+            ],
+            [
+                'position.required' => 'Nama jabatan wajib diisi.',
+                'position.string' => 'Nama jabatan harus berupa teks.',
+                'position.max' => 'Nama jabatan maksimal 255 karakter.',
+                'position.unique' => 'Nama jabatan sudah digunakan.',
+            ]
+        );
 
         $position->update($validated);
         return redirect()->route('admin.positions.index')->with('success', 'Jabatan berhasil diperbarui');
