@@ -221,33 +221,54 @@
                 <i class="fas fa-user-clock icon-cosmic"></i>
                 Siswa Terbaru
             </h2>
-            <div class="space-y-3 max-h-80 overflow-y-auto">
-                @forelse($latestStudents ?? [] as $student)
+            <div class="tables space-y-3 max-h-80 overflow-y-auto">
+                @forelse($latestUsers ?? [] as $user)
+
+                    @php
+                        $isStudent = isset($user->nisn);
+
+                        $photo = $isStudent ? $user->student_picture : $user->teacher_picture;
+
+                        $photoPath = $photo
+                            ? asset('storage/' . ($isStudent ? 'students/' : 'teachers/') . $photo)
+                            : null;
+                    @endphp
+
                     <div
-                        class="flex items-center justify-between p-3 bg-gray-900 bg-opacity-30 rounded hover:bg-opacity-50 transition">
+                        class="flex items-center justify-between p-3 bg-gray-900/30 rounded hover:bg-opacity-50 transition">
+
                         <div class="flex items-center gap-3">
+
                             <div
-                                class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center text-white font-semibold text-sm">
-                                {{-- {{ substr($student->name ?? 'S', 0, 1) }} --}}
-                                @if ($student->student_picture)
-                                    <img src="{{ asset('storage/students/' . $student->student_picture) }}"
-                                        alt="Foto Siswa" class="aspect-square h-full object-cover rounded-full">
+                                class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full overflow-hidden flex items-center justify-center">
+
+                                @if ($photoPath)
+                                    <img src="{{ $photoPath }}" class="aspect-square h-full w-full object-cover">
                                 @else
-                                    <div
-                                        class="bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center h-full aspect-square">
-                                        <i class="fas fa-user text-white text-sm"></i>
-                                    </div>
+                                    <i class="fas fa-user text-white text-sm"></i>
                                 @endif
                             </div>
+
                             <div>
-                                <p class="text-sm font-semibold text-white">{{ $student->name ?? 'N/A' }}</p>
-                                <p class="text-xs text-gray-400">{{ $student->nisn ?? 'NISN N/A' }}</p>
+                                <p class="text-sm font-semibold text-white">
+                                    {{ $user->name ?? 'N/A' }}
+                                </p>
+
+                                <p class="text-xs text-gray-400">
+                                    {{ $isStudent ? $user->nisn : 'Guru' }}
+                                </p>
                             </div>
                         </div>
-                        <span class="text-xs text-purple-300">Baru</span>
+
+                        <span class="text-xs text-purple-300">
+                            Baru
+                        </span>
                     </div>
+
                 @empty
-                    <p class="text-center text-gray-400 py-8">Tidak ada data siswa</p>
+                    <p class="text-center text-gray-400 py-8">
+                        Tidak ada data
+                    </p>
                 @endforelse
             </div>
             <a href="{{ route('admin.students.index') }}"

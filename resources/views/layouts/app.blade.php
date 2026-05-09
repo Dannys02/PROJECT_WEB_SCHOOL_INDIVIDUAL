@@ -34,7 +34,8 @@
         }
 
         .tables::-webkit-scrollbar {
-            background: rgba(168, 85, 247, 0.1);
+            /* background: rgba(168, 85, 247, 0.1); */
+            background: transparent;
             border-radius: 10px;
         }
 
@@ -220,7 +221,7 @@
                         @if ($globalSchool && $globalSchool->logo_school)
                             <img src="{{ asset('storage/logos/' . $globalSchool->logo_school) }}"
                                 alt="{{ $globalSchool->school_name }}"
-                                class="w-12 h-12 rounded-full object-cover border-2 border-purple-500">
+                                class="w-12 h-12 rounded-full object-cover">
                         @else
                             <div
                                 class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center">
@@ -228,8 +229,7 @@
                             </div>
                         @endif
 
-                        <span
-                            class="uppercase text-xs">{{ $globalSchool->school_name ?? 'Nama Sekolah' }}</span>
+                        <span class="uppercase text-xs">{{ $globalSchool->school_name ?? 'Nama Sekolah' }}</span>
                     </div>
                     <button class="md:hidden text-gray-300 hover:text-purple-400" onclick="toggleSidebar()">
                         <i class="fas fa-times text-xl"></i>
@@ -300,6 +300,13 @@
                     class="sidebar-menu-item block px-4 py-3 rounded-lg mb-2 @if (request()->routeIs('admin.about-school.*')) active @endif">
                     <i class="fas fa-school w-5"></i>
                     <span class="ml-3">Tentang Sekolah</span>
+                </a>
+
+                <!-- Pengaturan -->
+                <a href=""
+                    class="sidebar-menu-item block px-4 py-3 rounded-lg mb-2">
+                    <i class="fas fa-school w-5"></i>
+                    <span class="ml-3">Pengaturan</span>
                 </a>
             </nav>
 
@@ -384,8 +391,16 @@
         });
 
         setTimeout(() => {
-            document.getElementById('success-alert').style.display = 'none';
-            document.getElementById('error-alert').style.display = 'none';
+            const successAlert = document.getElementById('success-alert');
+            const errorAlert = document.getElementById('error-alert');
+
+            if (successAlert) {
+                successAlert.style.display = 'none';
+            }
+
+            if (errorAlert) {
+                errorAlert.style.display = 'none';
+            }
         }, 5000);
     </script>
 </body>

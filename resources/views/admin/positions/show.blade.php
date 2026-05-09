@@ -51,16 +51,16 @@
                         <p class="text-gray-400 text-xs mb-1">Dibuat Pada</p>
                         <p class="text-white font-semibold text-sm">{{ $position->created_at?->format('d M Y') ?? 'N/A' }}</p>
                     </div>
-                    {{-- <div class="stat-card">
+                    <div class="stat-card">
                         <p class="text-gray-400 text-xs mb-1">Diperbarui</p>
                         <p class="text-white font-semibold text-sm">{{ $position->updated_at?->format('d M Y') ?? 'N/A' }}</p>
-                    </div> --}}
-                    <div class="stat-card">
+                    </div>
+                    {{-- <div class="stat-card">
                         <p class="text-gray-400 text-xs mb-1">Status</p>
                         <p class="text-green-400 font-semibold">
                             <i class="fas fa-check-circle"></i> Aktif
                         </p>
-                    </div>
+                    </div> --}}
                     <div class="stat-card">
                         <p class="text-gray-400 text-xs mb-1">ID Jabatan</p>
                         <p class="text-white font-semibold text-sm">{{ $position->id ?? 'N/A' }}</p>
