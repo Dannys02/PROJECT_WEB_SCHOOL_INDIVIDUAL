@@ -137,80 +137,6 @@
 
         </div>
 
-        <!-- Quick Stats -->
-        {{-- <div class="card-cosmic rounded-lg p-6">
-            <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                <i class="fas fa-chart-circle icon-cosmic"></i>
-                Statistik Cepat
-            </h2>
-
-            <div class="space-y-4">
-                <!-- Stat Item 1 -->
-                <div>
-                    <div class="flex justify-between items-center mb-2">
-                        <p class="text-sm text-gray-400">Siswa Aktif</p>
-                        <p class="text-xs font-semibold text-purple-300">85%</p>
-                    </div>
-                    <div class="w-full bg-gray-700 rounded-full h-2">
-                        <div class="bg-gradient-to-r from-purple-500 to-purple-700 h-2 rounded-full" style="width: 85%;">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Stat Item 2 -->
-                <div>
-                    <div class="flex justify-between items-center mb-2">
-                        <p class="text-sm text-gray-400">Data Lengkap</p>
-                        <p class="text-xs font-semibold text-green-300">92%</p>
-                    </div>
-                    <div class="w-full bg-gray-700 rounded-full h-2">
-                        <div class="bg-gradient-to-r from-green-500 to-green-700 h-2 rounded-full" style="width: 92%;">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Stat Item 3 -->
-                <div>
-                    <div class="flex justify-between items-center mb-2">
-                        <p class="text-sm text-gray-400">Artikel Terbaru</p>
-                        <p class="text-xs font-semibold text-blue-300">78%</p>
-                    </div>
-                    <div class="w-full bg-gray-700 rounded-full h-2">
-                        <div class="bg-gradient-to-r from-blue-500 to-blue-700 h-2 rounded-full" style="width: 78%;"></div>
-                    </div>
-                </div>
-
-                <!-- Stat Item 4 -->
-                <div>
-                    <div class="flex justify-between items-center mb-2">
-                        <p class="text-sm text-gray-400">Konten Sekolah</p>
-                        <p class="text-xs font-semibold text-orange-300">95%</p>
-                    </div>
-                    <div class="w-full bg-gray-700 rounded-full h-2">
-                        <div class="bg-gradient-to-r from-orange-500 to-orange-700 h-2 rounded-full" style="width: 95%;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Divider -->
-            <div class="my-6 border-t border-purple-500 border-opacity-20"></div>
-
-            <!-- Quick Info -->
-            <div class="space-y-3 text-sm">
-                <div class="flex items-center justify-between">
-                    <span class="text-gray-400">Last Update</span>
-                    <span class="text-purple-300 font-semibold">{{ now()->format('d M Y') }}</span>
-                </div>
-                <div class="flex items-center justify-between">
-                    <span class="text-gray-400">Server Status</span>
-                    <span
-                        class="inline-block px-2 py-1 bg-green-500 bg-opacity-20 text-green-300 rounded text-xs font-semibold">
-                        <i class="fas fa-circle text-green-400"></i> Online
-                    </span>
-                </div>
-            </div>
-        </div> --}}
     </div>
 
     <!-- Latest Content -->
@@ -219,7 +145,7 @@
         <div class="card-cosmic rounded-lg p-6">
             <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
                 <i class="fas fa-user-clock icon-cosmic"></i>
-                Siswa Terbaru
+                User Terbaru
             </h2>
             <div class="tables space-y-3 max-h-80 overflow-y-auto">
                 @forelse($latestUsers ?? [] as $user)

@@ -220,8 +220,7 @@
                     <div class="nav-brand flex items-center gap-2">
                         @if ($globalSchool && $globalSchool->logo_school)
                             <img src="{{ asset('storage/logos/' . $globalSchool->logo_school) }}"
-                                alt="{{ $globalSchool->school_name }}"
-                                class="w-12 h-12 rounded-full object-cover">
+                                alt="{{ $globalSchool->school_name }}" class="w-12 h-12 rounded-full object-cover">
                         @else
                             <div
                                 class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center">
@@ -242,7 +241,15 @@
                 <div class="flex items-center gap-3">
                     <div
                         class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center">
-                        <i class="fas fa-user text-white"></i>
+                        @if ($globalUser && $globalUser->profile_photo)
+                            <img src="{{ asset('storage/profile-photos/' . $globalUser->profile_photo) }}"
+                                alt="{{ $globalUser->name }}" class="w-10 h-10 rounded-full object-cover">
+                        @else
+                            <div
+                                class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-white"></i>
+                            </div>
+                        @endif
                     </div>
                     <div>
                         <p class="text-sm font-semibold text-purple-200">{{ Auth::user()->name ?? 'Admin' }}</p>
@@ -303,9 +310,9 @@
                 </a>
 
                 <!-- Pengaturan -->
-                <a href=""
-                    class="sidebar-menu-item block px-4 py-3 rounded-lg mb-2">
-                    <i class="fas fa-school w-5"></i>
+                <a href="{{ route('admin.settings') }}"
+                    class="sidebar-menu-item block px-4 py-3 rounded-lg mb-2 @if (request()->routeIs('admin.settings')) active @endif">
+                    <i class="fas fa-gear w-5"></i>
                     <span class="ml-3">Pengaturan</span>
                 </a>
             </nav>
@@ -338,11 +345,16 @@
                         <h1 class="text-2xl font-bold text-white">@yield('page_title', 'Admin Dashboard')</h1>
                     </div>
                     <div class="flex items-center gap-4">
-
-                        <div
-                            class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center cursor-pointer hover:ring-2 hover:ring-purple-400">
-                            <i class="fas fa-user text-white"></i>
-                        </div>
+                        @if ($globalUser && $globalUser->profile_photo)
+                            <img src="{{ asset('storage/profile-photos/' . $globalUser->profile_photo) }}"
+                                alt="{{ $globalUser->name }}" class="w-10 h-10 rounded-full object-cover">
+                        @else
+                            <div
+                                class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-white"></i>
+                            </div>
+                        @endif
+                        
                     </div>
                 </div>
             </div>

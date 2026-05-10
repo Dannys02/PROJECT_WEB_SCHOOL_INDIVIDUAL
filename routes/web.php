@@ -23,6 +23,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //Dashboard Route
 Route::middleware('auth')->group(function () {
+    // Settings
+    Route::get('/admin/settings', [AuthController::class, 'showSettings'])->name('admin.settings');
+    Route::put('/admin/settings', [AuthController::class, 'updateSettings'])->name('admin.settings.update');
     //Admin Dashboard
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
 

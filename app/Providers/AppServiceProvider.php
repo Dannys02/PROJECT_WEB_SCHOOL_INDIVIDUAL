@@ -24,8 +24,10 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
 
             $school = AboutSchool::latest()->first();
+            $user = auth()->user();
 
             $view->with('globalSchool', $school);
+            $view->with('globalUser', $user);
         });
     }
 }
