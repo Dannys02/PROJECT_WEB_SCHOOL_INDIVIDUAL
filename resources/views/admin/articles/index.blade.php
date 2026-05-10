@@ -43,7 +43,8 @@
                     <!-- Header -->
                     <div>
                         <div class="flex items-start justify-between gap-3 ">
-                            <span class="absolute top-5 left-5 px-3 py-1 rounded-full text-xs font-semibold bg-purple-500 text-white">
+                            <span
+                                class="absolute top-5 left-5 px-3 py-1 rounded-full text-xs font-semibold bg-purple-500 text-white">
                                 Artikel #{{ $key + 1 }}
                             </span>
 
@@ -51,7 +52,20 @@
                                 {{ $article->created_at?->format('d M Y') ?? 'Tidak ada' }}
                             </span>
 
-                            <img src="{{ asset('storage/articles/' . $article->image) }}" alt="{{ $article->title }}" class="w-full h-52 object-cover rounded-lg">
+                            @if ($article->image)
+                                <div class="h-80 w-full overflow-hidden relative">
+                                    <img src="{{ asset('storage/articles/' . $article->image) }}"
+                                        alt="{{ $article->title }}" class="w-full h-full object-cover rounded-lg">
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-black to-transparent pointer-events-none">
+                                    </div>
+                                </div>
+                            @else
+                                <div
+                                    class="h-80 w-full bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center">
+                                    <i class="fas fa-newspaper text-6xl text-purple-300 opacity-30"></i>
+                                </div>
+                            @endif
                         </div>
                     </div>
 

@@ -50,7 +50,7 @@
                 <!-- Isi Artikel -->
                 <div class="prose prose-invert max-w-none mb-8">
                     <div class="text-gray-300 leading-relaxed">
-                        {{ $article->article ?? 'Tidak ada' }}
+                        {!! $article->article ?? 'Tidak ada' !!}
                     </div>
                 </div>
 

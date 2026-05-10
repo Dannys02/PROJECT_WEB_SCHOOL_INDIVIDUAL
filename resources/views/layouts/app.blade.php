@@ -7,6 +7,9 @@
     <title>@yield('title', 'Admin Dashboard') - Sekolah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Summernote CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
@@ -197,6 +200,15 @@
                 left: 0;
             }
         }
+
+        .note-editor .note-editable {
+            background-color: white !important;
+            color: black !important;
+        }
+
+        .note-editor .note-toolbar {
+            background-color: #f3f4f6;
+        }
     </style>
 </head>
 
@@ -240,7 +252,7 @@
             <div class="p-4 border-b border-purple-500 border-opacity-20">
                 <div class="flex items-center gap-3">
                     <div
-                        class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center">
+                        class="w-10 h-10 rounded-full flex items-center justify-center">
                         @if ($globalUser && $globalUser->profile_photo)
                             <img src="{{ asset('storage/profile-photos/' . $globalUser->profile_photo) }}"
                                 alt="{{ $globalUser->name }}" class="w-10 h-10 rounded-full object-cover">
@@ -354,7 +366,7 @@
                                 <i class="fas fa-user text-white"></i>
                             </div>
                         @endif
-                        
+
                     </div>
                 </div>
             </div>
@@ -387,6 +399,11 @@
         </div>
     </div>
 
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Summernote Lite -->
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
     <script>
         function toggleSidebar() {
             const sidebar = document.querySelector('.sidebar-mobile');
@@ -414,6 +431,25 @@
                 errorAlert.style.display = 'none';
             }
         }, 5000);
+
+        $(document).ready(function() {
+            $('#editor').summernote({
+                height: 300,
+
+                callbacks: {
+                    onPaste: function(e) {
+
+                        let bufferText = (
+                            (e.originalEvent || e).clipboardData || window.clipboardData
+                        ).getData('Text');
+
+                        e.preventDefault();
+
+                        document.execCommand('insertText', false, bufferText);
+                    }
+                }
+            });
+        });
     </script>
 </body>
 

@@ -27,8 +27,9 @@
                 <div>
                     <p class="text-gray-400 text-sm mb-1">Total Siswa</p>
                     <p class="text-3xl font-bold text-white">{{ $totalStudents ?? 0 }}</p>
-                    <p class="text-xs text-green-400 mt-2">
-                        <i class="fas fa-arrow-up"></i> +12% dari bulan lalu
+                    <p class="text-xs text-gray-400 mt-2">
+                        <i class="fas fa-graduation-cap"></i>
+                        Siswa aktif
                     </p>
                 </div>
                 <div class="text-5xl icon-cosmic">
@@ -149,7 +150,6 @@
             </h2>
             <div class="tables space-y-3 max-h-80 overflow-y-auto">
                 @forelse($latestUsers ?? [] as $user)
-
                     @php
                         $isStudent = isset($user->nisn);
 
@@ -197,10 +197,10 @@
                     </p>
                 @endforelse
             </div>
-            <a href="{{ route('admin.students.index') }}"
+            {{-- <a href="{{ route('admin.students.index') }}"
                 class="mt-4 block text-center text-purple-400 hover:text-purple-300 text-sm font-semibold transition">
                 Lihat Semua Siswa →
-            </a>
+            </a> --}}
         </div>
 
         <!-- Latest Articles -->
@@ -209,7 +209,7 @@
                 <i class="fas fa-newspaper-clock icon-cosmic"></i>
                 Artikel Terbaru
             </h2>
-            <div class="space-y-3 max-h-80 overflow-y-auto">
+            <div class="tables space-y-3 max-h-80 overflow-y-auto">
                 @forelse($latestArticles ?? [] as $article)
                     <div class="p-3 bg-gray-900 bg-opacity-30 rounded hover:bg-opacity-50 transition">
                         <p class="text-sm font-semibold text-white mb-1">{{ $article->title ?? 'N/A' }}</p>

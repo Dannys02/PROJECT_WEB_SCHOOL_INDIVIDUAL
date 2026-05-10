@@ -58,7 +58,7 @@
                 <!-- Isi Artikel -->
                 <div>
                     <label for="article" class="block text-sm font-semibold text-purple-200 mb-2">Isi Artikel</label>
-                    <textarea id="article" name="article" rows="10" placeholder="Tulis isi artikel di sini..."
+                    <textarea id="editor" name="article" rows="10" placeholder="Tulis isi artikel di sini..."
                         class="form-input-cosmic w-full px-4 py-3 rounded-lg">{{ old('article') }}</textarea>
                     @error('article')
                         <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
