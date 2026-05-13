@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PublicController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\TeacherController;
@@ -10,9 +11,8 @@ use App\Http\Controllers\Admin\PositionController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\AboutSchoolController;
 
-Route::get('/', function () {
-    return redirect()->route('admin.dashboard');
-});
+// Public Routes
+Route::get('/', [PublicController::class, 'index'])->name('home');
 
 //Auth Routes
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');

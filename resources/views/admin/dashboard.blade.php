@@ -177,7 +177,7 @@
 
                             <div>
                                 <p class="text-sm font-semibold text-white">
-                                    {{ $user->name ?? 'N/A' }}
+                                    {{ $user->name ?? 'Tidak ada' }}
                                 </p>
 
                                 <p class="text-xs text-gray-400">
@@ -212,8 +212,8 @@
             <div class="tables space-y-3 max-h-80 overflow-y-auto">
                 @forelse($latestArticles ?? [] as $article)
                     <div class="p-3 bg-gray-900 bg-opacity-30 rounded hover:bg-opacity-50 transition">
-                        <p class="text-sm font-semibold text-white mb-1">{{ $article->title ?? 'N/A' }}</p>
-                        <p class="text-xs text-gray-400 line-clamp-2">{{ $article->article ?? 'N/A' }}</p>
+                        <p class="text-sm font-semibold text-white mb-1">{{ $article->title ?? 'Tidak ada' }}</p>
+                        <p class="text-xs text-gray-400 line-clamp-2">{!! $article->article ?? 'Tidak ada' !!}</p>
                     </div>
                 @empty
                     <p class="text-center text-gray-400 py-8">Tidak ada data artikel</p>
